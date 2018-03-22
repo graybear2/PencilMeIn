@@ -1,3 +1,5 @@
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="style.css">
@@ -11,7 +13,6 @@
 		<div class="addfriend"><form action="/addfriend" method="post">
 			Friend's Email: <div class="eventinput"><textarea name="email" rows="1" cols="30"></textarea></div>
 			<div class="eventinput"><input type="submit" value="Post" /></div>
-<!-- 		<input type="hidden" name="" value="${fn:escapeXml()}"/> -->
 		</form></div>
 		
 		<!-- if there are friend requests -->
@@ -20,7 +21,6 @@
 			Friend's name
 			<button type="submit" formmethod="post">Accept</button>
 			<button type="submit" formmethod="post">Decline</button>
-<!-- 		<input type="hidden" name="" value="${fn:escapeXml()}"/> -->
 		</form></div>
 		
 		<h2>Pending requests:</h2>

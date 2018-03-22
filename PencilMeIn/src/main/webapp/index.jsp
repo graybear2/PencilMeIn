@@ -22,7 +22,8 @@
 		    else{
 		    	
 		%>
-		<p> <a href="<%=userService.createLoginURL("/home.jsp") %>">Log in </a> bitch</p>	
+		<p>Welcome to PencilMeIn</p>
+		<p> <a href="<%=userService.createLoginURL("/home.jsp") %>">Log in </a> to see your home page</p>	
 		<%
 		    }
 		%>			
