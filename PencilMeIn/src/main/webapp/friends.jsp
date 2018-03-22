@@ -8,7 +8,7 @@
 		<br>
 		
 		<!--  ADD FRIENDS -->
-		<div class="addfriend"><form action="/addfriend method="post">
+		<div class="addfriend"><form action="/addfriend" method="post">
 			Friend's Email: <div class="eventinput"><textarea name="email" rows="1" cols="30"></textarea></div>
 			<div class="eventinput"><input type="submit" value="Post" /></div>
 <!-- 		<input type="hidden" name="" value="${fn:escapeXml()}"/> -->
@@ -16,7 +16,7 @@
 		
 		<!-- if there are friend requests -->
 		<h2>Friend requests:</h2>
-		<div class="friendreq"><form action="/addfriend method="post">
+		<div class="friendreq"><form action="/addfriend" method="post">
 			Friend's name
 			<button type="submit" formmethod="post">Accept</button>
 			<button type="submit" formmethod="post">Decline</button>
