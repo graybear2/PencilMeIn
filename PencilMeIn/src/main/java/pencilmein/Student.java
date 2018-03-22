@@ -5,12 +5,14 @@ import java.util.HashMap;
 
 import com.google.appengine.api.users.User;
 import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 
 import pencilmein.Student;
 
 @Entity
 public class Student {
+    @Id String id;
     @Index User user;
     @Index Schedule schedule;
     @Index HashMap<User, Student> friends;
@@ -21,6 +23,7 @@ public class Student {
         schedule = s;
         friends = new HashMap<User, Student>();
         requests = new ArrayList<Student>();
+        id = u.getEmail();
     }
 
     public User getUser() {
