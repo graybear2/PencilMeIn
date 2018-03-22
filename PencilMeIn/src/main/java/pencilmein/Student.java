@@ -62,8 +62,8 @@ public class Student {
         return schedule;
     }
     
-    public void addEvent(String name, int day, int hour, int min) {
-        Event add = new Event(name, day, hour, min);
+    public void addEvent(String name, int day, int shour, int smin, int ehour, int emin) {
+        Event add = new Event(name, day, shour, smin, ehour, emin);
         schedule.addEvent(add);
     }
     
