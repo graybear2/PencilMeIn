@@ -11,5 +11,20 @@
 		<link rel="stylesheet" href="/style.css">
 	</head>
 	
-	
+	<body>
+		<%
+		    UserService userService = UserServiceFactory.getUserService();
+		    User user = userService.getCurrentUser();
+		    String userName = "";
+		    if (user != null) {
+				response.sendRedirect("/home.jsp");
+		    }
+		    else{
+		    	
+		%>
+		<p> <a href="<%=userService.createLoginURL("/home.jsp") %>">Log in </a> bitch</p>	
+		<%
+		    }
+		%>			
+	</body>
 </html>
