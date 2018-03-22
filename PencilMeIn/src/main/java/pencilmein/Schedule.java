@@ -8,6 +8,10 @@ public class Schedule {
     public Schedule() {
         schedule = new ArrayList<Event>();
     }
+    
+    public void addEvent(Event e) {
+        schedule.add(e);
+    }
 
     // public scheduleCompare() <-- eventually, this is where we will put schedule compare algorithm to output mutual free blocks
 }
