@@ -3,6 +3,7 @@
 
 <html>
 	<head>
+		<title>Pencil Me In</title>
 		<link rel="stylesheet" href="/style.css">
 	</head>
 

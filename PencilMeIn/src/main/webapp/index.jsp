@@ -7,7 +7,6 @@
 <html>
 	<head>
 		<title>Pencil Me In Log In</title>
-		<link href="https://fonts.googleapis.com/css?family=Cuprum|Quicksand|Cookie" rel="stylesheet">
 		<link rel="stylesheet" href="/style.css">
 	</head>
 	
