@@ -33,7 +33,7 @@ public class FriendServlet  extends HttpServlet{
 	        resp.sendRedirect("/index.jsp");
 	    }
 	    
-	    Student s = ofy().load().type(Student.class).id(user);
+	    //Student s = ofy().load().type(Student.class).id(user);
         
 	    String content = req.getParameter("content");
         

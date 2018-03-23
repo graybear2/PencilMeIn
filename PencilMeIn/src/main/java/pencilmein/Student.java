@@ -12,7 +12,8 @@ import pencilmein.Student;
 
 @Entity
 public class Student {
-    @Id User user;
+    @Id String id;
+    @Index User user;
     @Index Schedule schedule;
     @Index HashMap<User, Student> friends;
     @Index ArrayList<Student> requests;
@@ -22,6 +23,7 @@ public class Student {
         schedule = new Schedule();
         friends = new HashMap<User, Student>();
         requests = new ArrayList<Student>();
+        id = u.getEmail();
     }
 
     public User getUser() {
@@ -63,8 +65,8 @@ public class Student {
         return schedule;
     }
     
-    public void addEvent(String name, int day, int hour, int min) {
-        Event add = new Event(name, day, hour, min);
+    public void addEvent(String name, int day, int shour, int smin, int ehour, int emin) {
+        Event add = new Event(name, day, shour, smin, ehour, emin);
         schedule.addEvent(add);
     }
     

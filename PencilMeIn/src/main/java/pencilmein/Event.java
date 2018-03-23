@@ -3,14 +3,18 @@ package pencilmein;
 public class Event {
     String name;
     int day; // 1 = Monday, 2 = Tuesday, etc. 
-    int hour;
-    int minute;
+    int shour;
+    int sminute;
+    int ehour;
+    int eminute;
     
-    public Event (String n, int d, int h, int m) {
+    public Event (String n, int d, int sh, int sm, int eh, int em) {
         name = n;
         day = d;
-        hour = h;
-        minute = m;        
+        shour = sh;
+        sminute = sm;
+        ehour = eh;
+        eminute = em;
     }
 
     public String getName() {
@@ -29,21 +33,36 @@ public class Event {
         this.day = day;
     }
 
-    public int getHour() {
-        return hour;
+    public int getShour() {
+        return shour;
     }
 
-    public void setHour(int hour) {
-        this.hour = hour;
+    public void setShour(int shour) {
+        this.shour = shour;
     }
 
-    public int getMinute() {
-        return minute;
+    public int getSminute() {
+        return sminute;
     }
 
-    public void setMinute(int minute) {
-        this.minute = minute;
+    public void setSminute(int sminute) {
+        this.sminute = sminute;
     }
-    
+
+    public int getEhour() {
+        return ehour;
+    }
+
+    public void setEhour(int ehour) {
+        this.ehour = ehour;
+    }
+
+    public int getEminute() {
+        return eminute;
+    }
+
+    public void setEminute(int eminute) {
+        this.eminute = eminute;
+    }
     
 }
