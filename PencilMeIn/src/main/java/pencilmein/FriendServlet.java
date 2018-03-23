@@ -33,15 +33,12 @@ public class FriendServlet  extends HttpServlet{
 	        resp.sendRedirect("/index.jsp");
 	    }
 	    
-	    //Student s = ofy().load().type(Student.class).id(user);
-        
-	    String content = req.getParameter("content");
-        
-        String title = req.getParameter("title");
-        Date date = new Date();
+	    Student student = ofy().load().type(Student.class).id(user.getEmail()).now();
+	    String friend_email = req.getParameter("email");
+	    Student friend = ofy().load().type(Student.class).id(friend_email).now();
+	    student.addFriend(friend);
 
-        //BlogPost blogpost = new BlogPost(user, title, content, blogName);
-        //ofy().save().entity(blogpost).now();   // synchronous
+        ofy().save().entity(student).now();   // synchronous
         
         resp.sendRedirect("/home.jsp");
 
