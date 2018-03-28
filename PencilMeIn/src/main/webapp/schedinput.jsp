@@ -1,9 +1,5 @@
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-
 <html>
 	<head>
-		<title>Pencil Me In</title>
 		<link rel="stylesheet" href="/style.css">
 	</head>
 
@@ -17,6 +13,7 @@
 			Start time: <div class="eventinput"><textarea name="start" rows="1" cols="10"></textarea></div>
 			End time: <div class="eventinput"><textarea name="end" rows="1" cols="10"></textarea></div>
 			<div><input type="submit" value="Post" /></div>
+<!-- 		<input type="hidden" name="" value="${fn:escapeXml()}"/> -->
 		</form></div>
 
 

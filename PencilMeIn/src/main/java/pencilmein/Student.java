@@ -5,22 +5,25 @@ import java.util.HashMap;
 
 import com.google.appengine.api.users.User;
 import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 
 import pencilmein.Student;
 
 @Entity
 public class Student {
+    @Id String id;
     @Index User user;
     @Index Schedule schedule;
     @Index HashMap<User, Student> friends;
     @Index ArrayList<Student> requests;
     
-    public Student(User u, Schedule s) {
+    public Student(User u) {
         user = u;
-        schedule = s;
+        schedule = new Schedule();
         friends = new HashMap<User, Student>();
         requests = new ArrayList<Student>();
+        id = u.getEmail();
     }
 
     public User getUser() {
@@ -29,10 +32,6 @@ public class Student {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public Schedule getSchedule() {
-        return schedule;
     }
 
     // make fancier schedule editing later
@@ -44,7 +43,8 @@ public class Student {
         return friends;
     }
 
-    public void addFriendRequest(Student friend) {
+    // called when user accepts a friend request from friend
+    public void addFriend(Student friend) {
         this.friends.put(friend.getUser(), friend);
     }
     
@@ -56,8 +56,21 @@ public class Student {
         return requests;
     }
     
+    // called by user who's been added as a friend, i.e. when x friend requests y, need to get y Student object and then call this function with y.addRequest(x)
     public void addRequest(Student student) {
         requests.add(student);
+    }  
+
+    public Schedule getSchedule() {
+        return schedule;
     }
+    
+    public void addEvent(String name, int day, int shour, int smin, int ehour, int emin) {
+        Event add = new Event(name, day, shour, smin, ehour, emin);
+        schedule.addEvent(add);
+    }
+    
+    // later, add ability to edit schedule
+    // public void removeEvent()
     
 }
