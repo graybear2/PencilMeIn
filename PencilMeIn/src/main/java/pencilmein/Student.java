@@ -15,13 +15,13 @@ public class Student {
     @Id String id;
     @Index User user;
     @Index Schedule schedule;
-    @Index HashMap<User, Student> friends;
+    @Index ArrayList<Student> friends;
     @Index ArrayList<Student> requests;
     
     public Student(User u) {
         user = u;
         schedule = new Schedule();
-        friends = new HashMap<User, Student>();
+        friends = new ArrayList<Student>();
         requests = new ArrayList<Student>();
         id = u.getEmail();
     }
@@ -39,13 +39,13 @@ public class Student {
         this.schedule = schedule;
     }
 
-    public HashMap<User, Student> getFriends() {
+    public ArrayList<Student> getFriends() {
         return friends;
     }
 
     // called when user accepts a friend request from friend
     public void addFriend(Student friend) {
-        this.friends.put(friend.getUser(), friend);
+        this.friends.add(friend);
     }
     
     public void removeFriend(Student friend) {
