@@ -16,4 +16,13 @@
 	        <filter-name>ObjectifyFilter</filter-name>
 	        <url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>schedin</servlet-name>
+		<servlet-class>pencilmein.ScheduleServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>schedin</servlet-name>
+		<url-pattern>/enterevent</url-pattern>
+	</servlet-mapping>
 </web-app>
