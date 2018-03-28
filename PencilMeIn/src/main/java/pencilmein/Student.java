@@ -15,14 +15,14 @@ public class Student {
     @Id String id;
     @Index User user;
     @Index Schedule schedule;
-    @Index ArrayList<Student> friends;
-    @Index ArrayList<Student> requests;
+    @Index ArrayList<User> friends;
+    @Index ArrayList<User> requests;
     
     public Student(User u) {
         user = u;
         schedule = new Schedule();
-        friends = new ArrayList<Student>();
-        requests = new ArrayList<Student>();
+        friends = new ArrayList<User>();
+        requests = new ArrayList<User>();
         id = u.getEmail();
     }
 
@@ -39,25 +39,25 @@ public class Student {
         this.schedule = schedule;
     }
 
-    public ArrayList<Student> getFriends() {
+    public ArrayList<User> getFriends() {
         return friends;
     }
 
     // called when user accepts a friend request from friend
-    public void addFriend(Student friend) {
+    public void addFriend(User friend) {
         this.friends.add(friend);
     }
     
-    public void removeFriend(Student friend) {
-        this.friends.remove(friend.getUser());
+    public void removeFriend(User friend) {
+        this.friends.remove(friend);
     }
 
-    public ArrayList<Student> getRequests() {
+    public ArrayList<User> getRequests() {
         return requests;
     }
     
     // called by user who's been added as a friend, i.e. when x friend requests y, need to get y Student object and then call this function with y.addRequest(x)
-    public void addRequest(Student student) {
+    public void addRequest(User student) {
         requests.add(student);
     }  
 
