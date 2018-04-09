@@ -1,5 +1,8 @@
 package pencilmein;
 
+import static com.googlecode.objectify.ObjectifyService.ofy;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -24,6 +27,13 @@ public class Student {
         friends = new ArrayList<User>();
         requests = new ArrayList<User>();
         id = u.getEmail();
+    }
+    
+    public static Student getStudent(User user) {
+        if(user == null) 
+        		return null;
+        
+        return ofy().load().type(Student.class).id(user.getEmail()).now();
     }
 
     public User getUser() {

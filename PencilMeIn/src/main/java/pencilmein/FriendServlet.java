@@ -23,8 +23,7 @@ public class FriendServlet extends HttpServlet {
     }
     
     public void doPost(HttpServletRequest req, HttpServletResponse resp) {
-        UserService userService = UserServiceFactory.getUserService();
-        User user = userService.getCurrentUser();  
+        User user = UserServiceFactory.getUserService().getCurrentUser();  
         
         //Redirect user if they're not logged in
         if(user == null) {
@@ -36,7 +35,7 @@ public class FriendServlet extends HttpServlet {
             }
         }
         
-        Student student = ofy().load().type(Student.class).id(user.getEmail()).now();
+        Student student = Student.getStudent(user);
         String friend_email = req.getParameter("email");
         Student friend = ofy().load().type(Student.class).id(friend_email).now();
         friend.addRequest(student.getUser());
