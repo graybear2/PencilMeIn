@@ -4,6 +4,7 @@
 <%@ page import="com.google.appengine.api.users.User" %>
 <%@ page import="com.google.appengine.api.users.UserService"%>
 <%@ page import="com.google.appengine.api.users.UserServiceFactory"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
 	<head>
@@ -31,7 +32,10 @@
 		<h2>Friend requests:</h2>
 		<% for (User friend : list){   %>
 			<div class="friendreq"><form action="/addfriend" method="post">
-				<%friend.getNickname();%>
+				<% String name = friend.getNickname();
+				pageContext.setAttribute("name", name);
+				%>
+				<c:out value="${name}" escapeXml="false" />
 				<button type="submit" formmethod="post">Accept</button>
 				<button type="submit" formmethod="post">Decline</button>
 			</form></div>
