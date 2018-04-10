@@ -18,7 +18,7 @@
 	if (student == null){
 		//put them in datastore
 		student = new Student(UserServiceFactory.getUserService().getCurrentUser());
-		ofy().save().entity(student).now();
+		student.saveEntityNow();
 		System.out.println("put student in the data store");
 	
 		//TODO: what should we do with new users? redirect to schedule input?
