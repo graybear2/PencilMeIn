@@ -25,4 +25,22 @@
 		<servlet-name>schedin</servlet-name>
 		<url-pattern>/enterevent</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>home</servlet-name>
+		<servlet-class>pencilmein.HomeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>home</servlet-name>
+		<url-pattern>/home</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>friend</servlet-name>
+		<servlet-class>pencilmein.FriendServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>friend</servlet-name>
+		<url-pattern>/friend</url-pattern>
+	</servlet-mapping>
 </web-app>

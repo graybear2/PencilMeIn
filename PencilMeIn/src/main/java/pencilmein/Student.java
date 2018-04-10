@@ -10,7 +10,6 @@ import com.google.appengine.api.users.User;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
-
 import pencilmein.Student;
 
 @Entity
@@ -18,8 +17,12 @@ public class Student {
     @Id String id;
     @Index User user;
     @Index Schedule schedule;
-    @Index ArrayList<User> friends;
-    @Index ArrayList<User> requests;
+    ArrayList<User> friends;
+    ArrayList<User> requests;
+    
+    private Student() {
+    	
+    }
     
     public Student(User u) {
         user = u;

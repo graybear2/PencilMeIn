@@ -39,6 +39,7 @@ public class FriendServlet extends HttpServlet {
         String friend_email = req.getParameter("email");
         Student friend = ofy().load().type(Student.class).id(friend_email).now();
         friend.addRequest(student.getUser());
+        ofy().save().entity(friend).now();
         
          
     }

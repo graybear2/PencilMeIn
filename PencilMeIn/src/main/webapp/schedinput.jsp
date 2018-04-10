@@ -14,7 +14,10 @@
 			End time: <div class="eventinput"><textarea name="end" rows="1" cols="10"></textarea></div>
 			<div><input type="submit" value="Post" /></div>
 		</form></div>
-
+		
+		<br>
+		
+		<a href="home.jsp">home</a>
 
 
 

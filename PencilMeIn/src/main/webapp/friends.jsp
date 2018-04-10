@@ -27,22 +27,17 @@
 		<%
 		Student student = Student.getStudent(UserServiceFactory.getUserService().getCurrentUser());
 		ArrayList<User> list = student.getRequests();
-		
-		for (int i = 0; i < list.size(); i++){   %>
-			
-			<h2>Friend requests:</h2>
+		%>
+		<h2>Friend requests:</h2>
+		<% for (User friend : list){   %>
 			<div class="friendreq"><form action="/addfriend" method="post">
-				Friend's name
+				<% friend.getNickname(); %>
 				<button type="submit" formmethod="post">Accept</button>
 				<button type="submit" formmethod="post">Decline</button>
 			</form></div>
 			
 		<%}
 		%>
-		
-		
-		
-		
 		
 		<h2>Pending requests:</h2>
 		<!-- print pending friend requests -->
@@ -51,26 +46,6 @@
 		<h2>List of friends:</h2>
 		<!-- for each friend
 			<p>Name of friend</p> -->
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	</body>
 </html>
