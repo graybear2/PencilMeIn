@@ -16,13 +16,13 @@
 		    User user = userService.getCurrentUser();
 		    String userName = "";
 		    if (user != null) {
-				response.sendRedirect("/home.jsp");
+				response.sendRedirect("/home");
 		    }
 		    else{
 		    	
 		%>
 		<p>Welcome to PencilMeIn</p>
-		<p> <a href="<%=userService.createLoginURL("/home.jsp") %>">Log in </a> to see your home page</p>	
+		<p> <a href="<%=userService.createLoginURL("/home") %>">Log in </a> to see your home page</p>	
 		<%
 		    }
 		%>			

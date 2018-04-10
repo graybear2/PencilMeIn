@@ -1,5 +1,8 @@
 package pencilmein;
 
+import static com.googlecode.objectify.ObjectifyService.ofy;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -7,7 +10,6 @@ import com.google.appengine.api.users.User;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
-
 import pencilmein.Student;
 
 @Entity
@@ -15,8 +17,12 @@ public class Student {
     @Id String id;
     @Index User user;
     @Index Schedule schedule;
-    @Index ArrayList<User> friends;
-    @Index ArrayList<User> requests;
+    ArrayList<User> friends;
+    ArrayList<User> requests;
+    
+    private Student() {
+    	
+    }
     
     public Student(User u) {
         user = u;
@@ -24,6 +30,13 @@ public class Student {
         friends = new ArrayList<User>();
         requests = new ArrayList<User>();
         id = u.getEmail();
+    }
+    
+    public static Student getStudent(User user) {
+        if(user == null) 
+        		return null;
+        
+        return ofy().load().type(Student.class).id(user.getEmail()).now();
     }
 
     public User getUser() {

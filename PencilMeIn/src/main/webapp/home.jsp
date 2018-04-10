@@ -1,3 +1,11 @@
+<%@ page import="pencilmein.Student" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.google.appengine.api.users.User" %>
+<%@ page import="com.google.appengine.api.users.UserService"%>
+<%@ page import="com.google.appengine.api.users.UserServiceFactory"%>
+<%@ page import="static com.googlecode.objectify.ObjectifyService.ofy"%>
+
+
 <html>
 	<head>
 		<title>Pencil Me In</title>
@@ -5,6 +13,27 @@
 	</head>
 	
 	<body>
+	<%
+	Student student = Student.getStudent(UserServiceFactory.getUserService().getCurrentUser());
+	if (student == null){
+		//put them in datastore
+		student = new Student(UserServiceFactory.getUserService().getCurrentUser());
+		ofy().save().entity(student).now();
+		System.out.println("put student in the data store");
+	
+		//TODO: what should we do with new users? redirect to schedule input?
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	%>
 		<h1>Welcome!</h1>
 		<br>
 		<a href="friends.jsp">Manage Friends</a>
