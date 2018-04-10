@@ -41,6 +41,6 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>friend</servlet-name>
-		<url-pattern>/friend</url-pattern>
+		<url-pattern>/addfriend</url-pattern>
 	</servlet-mapping>
 </web-app>

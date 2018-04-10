@@ -79,6 +79,14 @@ public class Student {
         return student;
     }
     
+    public static Student getStudent(String friend_email) {
+    	Student student = ofy().load().type(Student.class).id(friend_email).now();
+        if(student == null)
+        		return null;
+        student.deserializeStudent();
+        return student;
+    }
+    
     public void deserializeStudent() {
     		friends = deserialize(friendBytes);
     		requests = deserialize(requestBytes);

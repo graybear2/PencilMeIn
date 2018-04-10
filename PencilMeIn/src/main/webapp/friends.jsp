@@ -31,7 +31,7 @@
 		<h2>Friend requests:</h2>
 		<% for (User friend : list){   %>
 			<div class="friendreq"><form action="/addfriend" method="post">
-				<% friend.getNickname(); %>
+				<%friend.getNickname();%>
 				<button type="submit" formmethod="post">Accept</button>
 				<button type="submit" formmethod="post">Decline</button>
 			</form></div>

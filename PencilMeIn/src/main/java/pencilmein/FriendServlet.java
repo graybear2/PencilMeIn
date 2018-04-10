@@ -22,7 +22,7 @@ public class FriendServlet extends HttpServlet {
         ObjectifyService.register(Student.class);
     }
     
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         User user = UserServiceFactory.getUserService().getCurrentUser();  
         
         //Redirect user if they're not logged in
@@ -37,10 +37,9 @@ public class FriendServlet extends HttpServlet {
         
         Student student = Student.getStudent(user);
         String friend_email = req.getParameter("email");
-        Student friend = ofy().load().type(Student.class).id(friend_email).now();
+        Student friend = Student.getStudent(friend_email);
         friend.addRequest(student.getUser());
-        ofy().save().entity(friend).now();
-        
-         
+        friend.saveEntityNow();
+        resp.sendRedirect("/friends.jsp");
     }
 }
