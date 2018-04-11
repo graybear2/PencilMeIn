@@ -28,10 +28,10 @@
 		<!--  if there are friend requests -->
 		<%
 		Student student = Student.getStudent(UserServiceFactory.getUserService().getCurrentUser());
-		ArrayList<User> list = student.getRequests();
+		ArrayList<User> requests = student.getRequests();
 		%>
 		<h2>Friend requests:</h2>
-		<% for (User friend : list){   %>
+		<% for (User friend : requests){   %>
 			<div class="friendreq"><form action="/addfriend" method="post">
 				<%
 					pageContext.setAttribute("name", friend.getNickname());
@@ -48,10 +48,17 @@
 		<h2>Pending requests:</h2>
 		<!-- print pending friend requests -->
 		
-		
+		<%ArrayList<User> friends = student.getFriends();%>
 		<h2>List of friends:</h2>
-		<!-- for each friend
-			<p>Name of friend</p> -->
+		<% 
+			for (User friend : friends){   
+				pageContext.setAttribute("name", friend.getNickname());
+		%>
+		<c:out value="${name}" escapeXml="false" />
+		<%
+			}
+		%>
+			
 	
 	</body>
 </html>
