@@ -21,6 +21,7 @@
 			Friend's Email: <div class="eventinput"><textarea name="email" rows="1" cols="30"></textarea></div>
 			<div class="eventinput"><input type="submit" value="Post" /></div>
 		</form></div>
+		<p>${message}</p>
 		
 		
 		
@@ -32,12 +33,13 @@
 		<h2>Friend requests:</h2>
 		<% for (User friend : list){   %>
 			<div class="friendreq"><form action="/addfriend" method="post">
-				<% String name = friend.getNickname();
-				pageContext.setAttribute("name", name);
+				<%
+					pageContext.setAttribute("name", friend.getNickname());
+					pageContext.setAttribute("email", friend.getEmail());
 				%>
 				<c:out value="${name}" escapeXml="false" />
-				<button type="submit" formmethod="post">Accept</button>
-				<button type="submit" formmethod="post">Decline</button>
+				<button type="submit" formmethod="post" name="accept" value="${email}">Accept</button>
+				<button type="submit" formmethod="post" name="decline" value="${email}">Decline</button>
 			</form></div>
 			
 		<%}

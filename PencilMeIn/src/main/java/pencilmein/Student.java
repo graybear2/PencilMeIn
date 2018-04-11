@@ -125,7 +125,11 @@ public class Student {
     // called by user who's been added as a friend, i.e. when x friend requests y, need to get y Student object and then call this function with y.addRequest(x)
     public void addRequest(User student) {
         requests.add(student);
-    }  
+    }
+    
+    public void removeRequest(User student) {
+    	requests.remove(student);
+    }
 
     public Schedule getSchedule() {
         return schedule;
