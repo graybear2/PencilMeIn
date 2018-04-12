@@ -41,60 +41,16 @@ public class Student {
     	return new Student(UserServiceFactory.getUserService().getCurrentUser());
     }
     
-    public void saveEntityNow() {
-    		friendBytes = serialize(friends);
-    		requestBytes = serialize(requests);
-    		ofy().save().entity(this).now();
-    }
-    
-    public static byte[] serialize(Object obj) {
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        ObjectOutputStream os;
-		try {
-			os = new ObjectOutputStream(out);
-			os.writeObject(obj);
-		} catch (IOException e) {
-			System.out.println("serialization error");
-		}
-        
-        return out.toByteArray();
-    }
-    
-    @SuppressWarnings("unchecked")
-	public static ArrayList<User> deserialize(byte[] data) {
-        ByteArrayInputStream in = new ByteArrayInputStream(data);
-        ObjectInputStream is;
-		try {
-			is = new ObjectInputStream(in);
-			return (ArrayList<User>) is.readObject();
-		} catch (Exception e1) {
-			System.out.println("deserialization error");
-			return null;
-		}
+    public void save() {
+        GoogleCloud.saveStudent(this);
     }
     
     public static Student getStudent(User user) {
-        if(user == null) 
-        		return null;
-        
-        Student student = ofy().load().type(Student.class).id(user.getEmail()).now();
-        if(student == null)
-        		return null;
-        student.deserializeStudent();
-        return student;
+        return GoogleCloud.getStudent(user);
     }
     
     public static Student getStudent(String friend_email) {
-    	Student student = ofy().load().type(Student.class).id(friend_email).now();
-        if(student == null)
-        		return null;
-        student.deserializeStudent();
-        return student;
-    }
-    
-    public void deserializeStudent() {
-    		friends = deserialize(friendBytes);
-    		requests = deserialize(requestBytes);
+        return GoogleCloud.getStudent(friend_email);
     }
 
     public User getUser() {
