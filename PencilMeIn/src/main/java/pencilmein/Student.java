@@ -11,6 +11,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
 import com.google.appengine.api.users.User;
+import com.google.appengine.api.users.UserServiceFactory;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
@@ -34,6 +35,10 @@ public class Student {
         friends = new ArrayList<User>();
         requests = new ArrayList<User>();
         id = u.getEmail();
+    }
+    
+    public static Student createStudent() {
+    	return new Student(UserServiceFactory.getUserService().getCurrentUser());
     }
     
     public void saveEntityNow() {
