@@ -29,15 +29,15 @@ public class Student {
     }
     
     public void save() {
-        CloudProxy.saveStudent(this);
+        GoogleCloud.saveStudent(this);
     }
     
     public static Student getStudent(User user) {
-        return CloudProxy.getStudent(user);
+        return GoogleCloud.getStudent(user);
     }
     
     public static Student getStudent(String friend_email) {
-        return CloudProxy.getStudent(friend_email);
+        return GoogleCloud.getStudent(friend_email);
     }
 
     public User getUser() {
