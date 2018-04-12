@@ -79,7 +79,7 @@ public class FriendServlet extends HttpServlet {
         	}
 	        else {
 		        friend.addRequest(user);
-		        friend.saveEntityNow();
+		        friend.save();
 	        	req.setAttribute("message", "Request to " + friend.getUser().getNickname() + " sent successfully");
 	        }
         }
@@ -90,12 +90,12 @@ public class FriendServlet extends HttpServlet {
     	acc.addFriend(ask.getUser());
     	ask.addFriend(acc.getUser());
     	
-    	acc.saveEntityNow();
-    	ask.saveEntityNow();
+    	acc.save();
+    	ask.save();
     }
     
     public void declineRequest(Student dec, Student ask) {
     	dec.removeRequest(ask.getUser());
-    	dec.saveEntityNow();
+    	dec.save();
     }
 }
