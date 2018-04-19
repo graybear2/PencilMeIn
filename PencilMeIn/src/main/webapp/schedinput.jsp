@@ -20,8 +20,8 @@
 				    <option>Sunday </option>
 				    </select>   
 			</div>
-			Start time: <div class="eventinput"><input name="start" type="time" step="1800"></div>
-			End time: <div class="eventinput"><input name="end" type="time" step="1800"></div>
+			Start time: <div class="eventinput"><input name="start" type="time" step="900"></div>
+			End time: <div class="eventinput"><input name="end" type="time" step="900"></div>
 			<div><input type="submit" value="Post" /></div>
 		</form></div>
 		

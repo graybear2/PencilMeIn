@@ -37,7 +37,7 @@ public final class GoogleCloud implements CloudProxy {
     }
     
     public static synchronized Student getStudent(String friend_email) {
-        Student student = ofy().load().type(Student.class).id(friend_email).now();
+        Student student = (Student) ofy().load().type(Student.class).id(friend_email).now();
         if(student == null)
                 return null;
         deserializeStudent(student);
@@ -48,7 +48,7 @@ public final class GoogleCloud implements CloudProxy {
         if(user == null) 
                 return null;
         
-        Student student = ofy().load().type(Student.class).id(user.getEmail()).now();
+        Student student = (Student) ofy().load().type(Student.class).id(user.getEmail()).now();
         if(student == null)
                 return null;
         deserializeStudent(student);
