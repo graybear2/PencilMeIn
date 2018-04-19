@@ -90,6 +90,13 @@ public class ScheduleServlet extends HttpServlet {
         //Remove an event
         else if(req.getParameter("remove") != null) {
             //TODO: Implement event removing
-        }        
+        }
+        
+        try {
+            resp.sendRedirect("/schedinput.jsp");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
