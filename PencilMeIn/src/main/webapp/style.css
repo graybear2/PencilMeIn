@@ -11,3 +11,9 @@ p{
 .friends {
 	text-align: center;
 }
+
+body {
+   background-image: url("https://i.pinimg.com/originals/1e/94/82/1e94823d0917403c381646ae6c5e0b3b.jpg");
+   background-size:cover;
+   opacity: 0.5;
+}

@@ -7,7 +7,7 @@
 <html>
 	<head>
 		<title>Pencil Me In Log In</title>
-		<link rel="stylesheet" href="/style.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	
 	<body>
