@@ -42,7 +42,8 @@ public class ScheduleServlet extends HttpServlet {
             String dayString = req.getParameter("day");
             String startString = req.getParameter("start");
             String endString = req.getParameter("end");
-            
+            System.out.println(name);
+                  
             int day, shour, smin, ehour, emin;
             
             //TODO: Parse stuff into correct type for Student.addEvent();

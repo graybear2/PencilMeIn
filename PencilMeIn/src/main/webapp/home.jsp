@@ -10,9 +10,13 @@
 	<head>
 		<title>Pencil Me In</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<link href="https://fonts.googleapis.com/css?family=Homemade+Apple|Raleway" rel="stylesheet">
+		
 	</head>
 	
 	<body>
+		<div class="lines"></div>
+		<p class="title">PencilMeIn</p>
 	<%
 	Student student = Student.getStudent(UserServiceFactory.getUserService().getCurrentUser());
 	if (student == null){
@@ -25,52 +29,30 @@
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
 	%>
-		<h1>Welcome!</h1>
-		<br>
-		<a href="friends.jsp">Manage Friends</a>
-		<br>
+	
+		<ul class="list">
+			<li>Welcome!</li>
+			<li><a href="friends.jsp">Manage Friends</a></li>
+			<li><a href="schedinput.jsp">Edit Schedule</a></li>
+			<li> </li>
+		    <li> </li>
+		    <li> </li>
+		    <li> </li>
+		    <li> </li>
+		    <li> </li>
+		    <li> </li>
+		    <li> </li>
+		    <li> </li>
+		    <li> </li>
+		</ul>
+
 		
-		<p>My Schedule:</p>
-		<!-- LIST SCHEDULE EVENTS HERE -->
 		
-		<%
-		//java
-        %>
+	
+
 		
 		
 		
-		
-		
-		<br>
-		<a href="schedinput.jsp">Edit Schedule</a>
-		<br>
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	</body>
 </html>

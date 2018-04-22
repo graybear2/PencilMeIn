@@ -4,16 +4,92 @@
 }
 
 
-p{
-	color: red;
-}
-
 .friends {
 	text-align: center;
 }
 
+.title{
+	font-family: 'Homemade Apple', cursive;
+	font-size: 44px;
+	text-align: center;
+	padding-top: 40px;
+	padding-bottom: 0px;
+	margin-bottom: -55px;
+	border-bottom: 0px;
+}
+
 body {
-   background-image: url("https://i.pinimg.com/originals/1e/94/82/1e94823d0917403c381646ae6c5e0b3b.jpg");
-   background-size:cover;
-   opacity: 0.5;
+	background-color: white;
+}
+
+.list {
+  color: #555;
+  font-size: 22px;
+  padding: 0 !important;
+  width: 100%;
+  font-family: 'Raleway', sans-serif;
+  border-botom: 1px solid lightblue;
+  border-top: 1px solid lightblue;
+}
+.list li {
+  list-style: none;
+  border-bottom: 1px solid lightblue;
+  text-indent: 25px;
+  height: 30px;
+  padding: 10px;
+  text-transform: capitalize;
+}
+
+.lines {
+  border-left: 1px solid #ffaa9f;
+  border-right: 1px solid #ffaa9f;
+  width: 2px;
+  float: left;
+  height: 900px;
+  margin-left: 80px;
+}
+
+.subtitle {
+	font-weight: bold;
+}
+
+.msg {
+	color: red;
+}
+
+.center{
+	text-align: center;
+}
+
+.weekdays {
+    margin: 0;
+    padding: 10px 0;
+    background-color:#ddd;
+}
+
+.weekdays li {
+    display: inline-block;
+    width: 12%;
+    color: #666;
+    text-align: center;
+}
+
+.days {
+    background: #eee;
+    padding: 0px;
+    border: 1px;
+}
+
+.days li {
+	line-height: 20px;
+    list-style-type: none;
+    display: inline-block;
+    width: 12%;
+    text-align: center;
+    font-size:12px;
+    color: #777;
+}
+
+.busy {
+	background-color: green;
 }

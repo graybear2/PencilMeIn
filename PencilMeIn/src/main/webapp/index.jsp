@@ -8,9 +8,11 @@
 	<head>
 		<title>Pencil Me In Log In</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<link href="https://fonts.googleapis.com/css?family=Homemade+Apple|Raleway" rel="stylesheet">
 	</head>
 	
 	<body>
+		<div class="lines"></div>
 		<%
 		    UserService userService = UserServiceFactory.getUserService();
 		    User user = userService.getCurrentUser();
@@ -21,8 +23,21 @@
 		    else{
 		    	
 		%>
-		<p>Welcome to PencilMeIn</p>
-		<p> <a href="<%=userService.createLoginURL("/home") %>">Log in </a> to see your home page</p>	
+		<p class="title">PencilMeIn</p>
+		<ul class="list">
+			<li> </li>
+		    <li><a href="<%=userService.createLoginURL("/home") %>">Log in</a> to see your home page	</li>
+		    <li> </li>
+		    <li> </li>
+		    <li> </li>
+		    <li> </li>
+		    <li> </li>
+		    <li> </li>
+		    <li> </li>
+		    <li> </li>
+		    <li> </li>
+		    <li> </li>
+	  	</ul>
 		<%
 		    }
 		%>			
