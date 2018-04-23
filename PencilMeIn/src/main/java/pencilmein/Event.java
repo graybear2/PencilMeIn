@@ -7,6 +7,8 @@ import java.util.TreeSet;
 public class Event {
     String name;
     TreeSet<Integer> times;
+    
+    private Event() {}
             
     public Event (String n, ArrayList<Day> d, int sh, int sm, int eh, int em) {
         name = n;
@@ -20,11 +22,12 @@ public class Event {
         TreeSet<Integer> converted = new TreeSet<Integer>();
         
         for (Day day : d) {
-            Integer dayInt = 0;
+            int dayInt = 0;
             switch(day) {
             case SUNDAY: dayInt += 0;
             break;
-            case MONDAY: dayInt += 10000;
+            case MONDAY: dayInt += 10000;            
+            System.out.println("mon" + dayInt);
             break;
             case TUESDAY: dayInt += 20000;
             break;
@@ -44,7 +47,7 @@ public class Event {
                 
                 System.out.println("SH " + sh + " EH " + eh + " SM " + sm + " EM " + em);
                 
-                Integer add = dayInt;
+                int add = dayInt;
                 add += sh*100;
                 add += sm;
                 sm += 15;
@@ -55,7 +58,7 @@ public class Event {
                 if (sh == 24) {
                     sh = 0;
                 }
-                converted.add(add);
+                converted.add(new Integer(add));
 
                 System.out.println("Added this time " + add);
 
