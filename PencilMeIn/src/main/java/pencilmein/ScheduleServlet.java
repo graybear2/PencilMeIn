@@ -39,41 +39,44 @@ public class ScheduleServlet extends HttpServlet {
         //Add a new event
         if(req.getParameter("add") != null) {
             String name = req.getParameter("name");
-            String dayString = req.getParameter("day");
+            //TODO: GET ALL THE DAYS SOMEHOW GOOD LUCK DYLAN
             String startString = req.getParameter("start");
             String endString = req.getParameter("end");
-            
+            System.out.println(name);
+            System.out.println(startString);
+            System.out.println(endString);
+               
             int day, shour, smin, ehour, emin;
             
             //TODO: Parse stuff into correct type for Student.addEvent();
-            dayString.toLowerCase();
-            
-            switch(dayString) {
-                case "monday":
-                    day = 1;
-                    break;
-                case "tuesday":
-                    day = 2;
-                    break;
-                case "wednesday":
-                    day = 3;
-                    break;
-                case "thursdday":
-                    day = 4;
-                    break;
-                case "friday":
-                    day = 5;
-                    break;
-                case "saturday":
-                    day = 6;
-                    break;
-                case "sunday":
-                    day = 7;
-                    break;
-                default:
-                    day = -1;
-                    //throw new IllegalArgumentException("Invalid day of the week: " + dayOfWeekArg);
-            }
+//            dayString.toLowerCase();
+//            
+//            switch(dayString) {
+//                case "monday":
+//                    day = 1;
+//                    break;
+//                case "tuesday":
+//                    day = 2;
+//                    break;
+//                case "wednesday":
+//                    day = 3;
+//                    break;
+//                case "thursdday":
+//                    day = 4;
+//                    break;
+//                case "friday":
+//                    day = 5;
+//                    break;
+//                case "saturday":
+//                    day = 6;
+//                    break;
+//                case "sunday":
+//                    day = 7;
+//                    break;
+//                default:
+//                    day = -1;
+//                    //throw new IllegalArgumentException("Invalid day of the week: " + dayOfWeekArg);
+//            }
             
             String[] startParts = startString.split(":");
             shour = Integer.parseInt(startParts[0]);
@@ -84,7 +87,7 @@ public class ScheduleServlet extends HttpServlet {
             emin = Integer.parseInt(endParts[1]);
             
             Student s = ofy().load().type(Student.class).id(user.getEmail()).now();    
-            s.addEvent(name, day, shour, smin, ehour, emin);
+        //    s.addEvent(name, day, shour, smin, ehour, emin);
         }
         
         //Remove an event

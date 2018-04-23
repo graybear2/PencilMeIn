@@ -12,6 +12,10 @@ public class Schedule {
     public void addEvent(Event e) {
         schedule.add(e);
     }
+    
+    public ArrayList<Event> getEvents() {
+        return schedule;
+    }
 
     // public scheduleCompare() <-- eventually, this is where we will put schedule compare algorithm to output mutual free blocks
 }
