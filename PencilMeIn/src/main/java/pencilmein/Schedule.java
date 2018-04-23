@@ -13,7 +13,6 @@ public class Schedule {
     private static final long serialVersionUID = 1L;
     
     @Serialized ArrayList<Event> schedule;
-    @Serialized SortedSet<Integer> busy;
     
     public Schedule() {
         schedule = new ArrayList<Event>();

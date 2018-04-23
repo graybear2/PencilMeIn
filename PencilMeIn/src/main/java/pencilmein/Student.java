@@ -96,9 +96,8 @@ public class Student {
         return schedule;
     }
     
-    public void addEvent(String name, int day, int shour, int smin, int ehour, int emin) {
-        Event add = new Event(name, day, shour, smin, ehour, emin);
-        schedule.addEvent(add);
+    public void addEvent(Event e) {
+        schedule.addEvent(e);
     }
     
     // later, add ability to edit schedule

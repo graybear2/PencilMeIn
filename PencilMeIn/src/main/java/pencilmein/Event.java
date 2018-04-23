@@ -1,5 +1,6 @@
 package pencilmein;
 
+import java.util.ArrayList;
 import java.util.SortedSet;
 
 public class Event {
@@ -14,7 +15,7 @@ public class Event {
     
     SortedSet<Integer> times;
     
-    public Event (String n, int d, int sh, int sm, int eh, int em) {
+    public Event(String n, ArrayList<Day> d, int sh, int sm, int eh, int em) {
         name = n;
         day = d;
         startHour = sh;
@@ -69,6 +70,5 @@ public class Event {
 
     public void setEminute(int eminute) {
         this.endMinute = eminute;
-    }
-    
+    } 
 }
