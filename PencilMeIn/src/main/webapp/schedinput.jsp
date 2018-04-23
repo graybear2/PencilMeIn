@@ -19,11 +19,12 @@
 	</head>
 
 	<body>
+		<% UserService userService = UserServiceFactory.getUserService(); %>
 		<div class="lines"></div>
 		<p class="title">Edit Schedule</p>
-		<button type="button" class="homebutton">Back to Home</button>
-		<button type="button" class="logoutbutton">Log Out</button>
 		
+		<a href="home.jsp" class="homelink">Home</a>
+		<a href="<%= userService.createLogoutURL("/index.jsp") %>" class="outlink">Log Out</a>
 		
 		<ul class="list"> 
 			<li> </li>
