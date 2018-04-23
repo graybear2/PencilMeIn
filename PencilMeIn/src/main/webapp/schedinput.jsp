@@ -21,6 +21,9 @@
 	<body>
 		<div class="lines"></div>
 		<p class="title">Edit Schedule</p>
+		<button type="button" class="homebutton">Back to Home</button>
+		<button type="button" class="logoutbutton">Log Out</button>
+		
 		
 		<ul class="list"> 
 			<li> </li>
@@ -31,19 +34,19 @@
 				Start time: <div class="eventinput"><input name="start" type="time" step="900"></div>
 				End time: <div class="eventinput"><input name="end" type="time" step="900"></div></li>
 				<li> Day:<div class="eventinput">
-				    <input type="checkbox" id="sunday">
+				    <input type="checkbox" id="sunday" name="sunday">
 						<label for="sunday">Su </label>
-					<input type="checkbox" id="monday">
+					<input type="checkbox" id="monday" name="monday">
 						<label for="monday">Mo </label>
-					<input type="checkbox" id="tuesday">
+					<input type="checkbox" id="tuesday" name="tuesday">
 						<label for="tuesday">Tu </label>
-					<input type="checkbox" id="wednesday">
+					<input type="checkbox" id="wednesday" name="wednesday">
 						<label for="wednesday">We </label>
-					<input type="checkbox" id="thursday">
+					<input type="checkbox" id="thursday" name="thursday">
 						<label for="thursday">Th </label>
-					<input type="checkbox" id="friday">
+					<input type="checkbox" id="friday" name="friday">
 						<label for="friday">Fr </label>
-					<input type="checkbox" id="saturday">
+					<input type="checkbox" id="saturday" name="saturday">
 						<label for="saturday">Sa </label>
 				<input type="submit" name="add" value="Add Event" /></div>
 				</form></div>
