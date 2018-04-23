@@ -45,7 +45,7 @@ body {
   border-right: 1px solid #ffaa9f;
   width: 2px;
   float: left;
-  height: 900px;
+  height: 730px;
   margin-left: 80px;
 }
 
@@ -78,6 +78,7 @@ body {
     background: #eee;
     padding: 0px;
     border: 1px;
+    margin-top: 0px;
 }
 
 .days li {
@@ -91,5 +92,11 @@ body {
 }
 
 .busy {
-	background-color: green;
+	background-color: lightblue;
+}
+
+hr {
+	margin-top: 0px;
+	margin-bottom: -1px;
+	border-width: 1px;
 }

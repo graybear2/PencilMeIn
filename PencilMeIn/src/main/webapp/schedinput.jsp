@@ -6,6 +6,9 @@
 <%@ page import="com.google.appengine.api.users.UserService"%>
 <%@ page import="com.google.appengine.api.users.UserServiceFactory"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.Calendar" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.util.GregorianCalendar"%>
 
 
 <html>
@@ -24,9 +27,10 @@
 			<li class="subtitle">Add Event:</li>
 			<li>
 				<div class="in"><form action="/enterevent" method="post">
-				Name: <div class="eventinput"><textarea name="name" rows="1" cols="30"></textarea></div></li>
-			
-				<li> Day: <div class="eventinput">
+				Name: <div class="eventinput"><textarea name="name" rows="1" cols="30"></textarea></div>
+				Start time: <div class="eventinput"><input name="start" type="time" step="900"></div>
+				End time: <div class="eventinput"><input name="end" type="time" step="900"></div></li>
+				<li> Day:<div class="eventinput">
 				    <select name="day" >      
 				    <option>Monday</option>      
 				    <option>Tuesday</option>      
@@ -35,11 +39,8 @@
 				    <option>Friday </option>
 				    <option>Saturday </option>
 				    <option>Sunday </option>
-				    </select>   
-					</div> </li>
-				<li> Start time: <div class="eventinput"><input name="start" type="time" step="900"></div></li>
-				<li>End time: <div class="eventinput"><input name="end" type="time" step="900"></div></li>
-				<li><div><input type="submit" name="add" value="Post" /></div>
+				    </select>
+				<input type="submit" name="add" value="Add Event" /></div>
 				</form></div>
 			</li>
 			<li> </li>
@@ -84,12 +85,30 @@
 		
 		
 		<ul class="days">
-		<%
+		<%			
+			Calendar cal = GregorianCalendar.getInstance();
+			cal.setTime(new Date());
+			int start = cal.get(Calendar.HOUR_OF_DAY);
+			int leftBound = 12-start;
+			int rightBound = 23-start;
 			for (int hours = 0; hours < 24; hours++){
-				%> <li>time</li>  <%
+				int t = (hours+start)%12;
+				if (t==0)
+					t=12;
+				if (hours < leftBound || hours > rightBound){
+					pageContext.setAttribute("time", "<li>" + t + ":00am</li>");
+					if(t==12)
+						t=0;
+				}
+				else{
+					pageContext.setAttribute("time", "<li>" + t + ":00pm</li>");
+					if(t != 12)
+						t += 12;
+				}
+				%> <c:out value="${time}" escapeXml="false"/>  <%
 				for (int mins = 0; mins < 4; mins++){
 					for (int days = 0; days < 7; days++){
-						if (days==4) {	//if event at this time
+						if (days==4) {							//if event at this time
 							%> <li class="busy">day</li>
 						<% }
 						else{
@@ -98,7 +117,7 @@
 					}
 					%> <li></li> <%
 				}
-				%> <!-- <hr> --> <%
+				%> <hr> <%
 			}
         %>
         
