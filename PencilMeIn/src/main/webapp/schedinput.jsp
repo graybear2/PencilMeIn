@@ -31,15 +31,20 @@
 				Start time: <div class="eventinput"><input name="start" type="time" step="900"></div>
 				End time: <div class="eventinput"><input name="end" type="time" step="900"></div></li>
 				<li> Day:<div class="eventinput">
-				    <select name="day" >      
-				    <option>Monday</option>      
-				    <option>Tuesday</option>      
-				    <option>Wednesday</option>  
-				    <option>Thursday </option>
-				    <option>Friday </option>
-				    <option>Saturday </option>
-				    <option>Sunday </option>
-				    </select>
+				    <input type="checkbox" id="sunday">
+						<label for="sunday">Su </label>
+					<input type="checkbox" id="monday">
+						<label for="monday">Mo </label>
+					<input type="checkbox" id="tuesday">
+						<label for="tuesday">Tu </label>
+					<input type="checkbox" id="wednesday">
+						<label for="wednesday">We </label>
+					<input type="checkbox" id="thursday">
+						<label for="thursday">Th </label>
+					<input type="checkbox" id="friday">
+						<label for="friday">Fr </label>
+					<input type="checkbox" id="saturday">
+						<label for="saturday">Sa </label>
 				<input type="submit" name="add" value="Add Event" /></div>
 				</form></div>
 			</li>
@@ -57,15 +62,15 @@
 		</ul>
 		
 		<%
-		Student student = Student.getStudent(UserServiceFactory.getUserService().getCurrentUser());
+		/* Student student = Student.getStudent(UserServiceFactory.getUserService().getCurrentUser());
 		Schedule sched =  student.getSchedule();
-		ArrayList<Event> events = sched.getEvents();
+		ArrayList<Event> events = sched.getEvents(); */
 		    		
-				for (Event event : events){   
+	//			for (Event event : events){   
 					%>
-		    				<c:out value="${name} ${day}" escapeXml="false" />		    				
-		    			<%
-				}
+	<!--     				<c:out value="${name} ${day}" escapeXml="false" />		    				
+	 -->		    			<%
+	//			}
 		%> 
 		
 		
