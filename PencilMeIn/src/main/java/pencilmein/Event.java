@@ -2,26 +2,48 @@ package pencilmein;
 
 import java.util.ArrayList;
 import java.util.SortedSet;
+import java.util.TreeSet;
 
 public class Event {
     String name;
-    int day; // 0 = Sunday, 1 = Monday, 2 = Tuesday, etc. 
-    int startHour;
-    int startMinute;
-    int endHour;
-    int endMinute;
-    
-    boolean am;
-    
-    SortedSet<Integer> times;
-    
-    public Event(String n, ArrayList<Day> d, int sh, int sm, int eh, int em) {
+    TreeSet<Integer> times;
+            
+    public Event (String n, ArrayList<Day> d, int sh, int sm, int eh, int em) {
         name = n;
-        day = d;
-        startHour = sh;
-        startMinute = sm;
-        endHour = eh;
-        endMinute = em;
+        times = getTimes(d, sh, sm, eh, em);
+    }
+    
+    private TreeSet<Integer> getTimes(ArrayList<Day> d, int sh, int sm, int eh, int em) {
+        
+        TreeSet<Integer> converted = new TreeSet<Integer>();
+        
+        for (Day day : d) {
+            Integer dayInt = 0;
+            switch(day) {
+            case SUNDAY: dayInt += 0;
+            case MONDAY: dayInt += 010000;
+            case TUESDAY: dayInt += 020000;
+            case WEDNESDAY: dayInt += 030000;
+            case THURSDAY: dayInt += 040000;
+            case FRIDAY: dayInt += 050000;
+            case SATURDAY: dayInt += 060000;
+            }
+            
+            while (sh < eh || sm < em) {
+                Integer add = dayInt;
+                add += sh*100;
+                add += sm;
+                sm += 15;
+                if (sm == 60) {
+                    sm = 0;
+                    sh++;
+                }
+                converted.add(add);
+            }
+            
+        }
+        
+        return converted;
     }
 
     public String getName() {
@@ -32,43 +54,7 @@ public class Event {
         this.name = name;
     }
     
-    public int getDay() {
-        return day;
+    public TreeSet<Integer> getTimes() {
+        return times;
     }
-    
-    public void setDay(int day) {
-        this.day = day;
-    }
-
-    public int getShour() {
-        return startHour;
-    }
-
-    public void setShour(int shour) {
-        this.startHour = shour;
-    }
-
-    public int getSminute() {
-        return startMinute;
-    }
-
-    public void setSminute(int sminute) {
-        this.startMinute = sminute;
-    }
-
-    public int getEhour() {
-        return endHour;
-    }
-
-    public void setEhour(int ehour) {
-        this.endHour = ehour;
-    }
-
-    public int getEminute() {
-        return endMinute;
-    }
-
-    public void setEminute(int eminute) {
-        this.endMinute = eminute;
-    } 
 }
