@@ -18,7 +18,14 @@
 		<div class="lines"></div>
 		<p class="title">PencilMeIn</p>
 	<%
-	Student student = Student.getStudent(UserServiceFactory.getUserService().getCurrentUser());
+	UserService userService = UserServiceFactory.getUserService();
+	User user = userService.getCurrentUser();
+	//System.out.println(user);
+	if (user == null){
+		response.sendRedirect("/index.jsp");
+		return;
+	}
+	Student student = Student.getStudent(user);
 	if (student == null){
 		//put them in datastore
 		student = Student.createStudent();
@@ -30,7 +37,8 @@
 	
 	
 	%>
-	
+		<a href="<%= userService.createLogoutURL("/index.jsp") %>" class="outlink">Log Out</a>
+		
 		<ul class="list">
 			<li>Welcome!</li>
 			<li><a href="friends.jsp">Manage Friends</a></li>

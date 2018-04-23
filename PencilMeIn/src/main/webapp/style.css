@@ -120,15 +120,32 @@ hr {
 	border-width: 1px;
 }
 
-.homebutton {
-	position: fixed;
-	top: 10px;
+.homelink{
+	position: absolute;
+	top: 83px;
 	left: 100px;
+	font-size: 20px;
+	font-family: 'Homemade Apple', cursive;
+	text-decoration: none;
+	color: black;
 }
 
-.logoutbutton {
-	position: fixed;
-	top: 10px;
-	right: 10px;
+.homelink:hover{
+	color: lightblue;
 }
+
+.outlink{
+	position: absolute;
+	top: 83px;
+	right: 10px;
+	font-size: 20px;
+	font-family: 'Homemade Apple', cursive;
+	text-decoration: none;
+	color: black;
+}
+
+.outlink:hover{
+	color: lightblue;
+}
+
 

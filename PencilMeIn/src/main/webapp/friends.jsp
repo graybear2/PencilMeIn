@@ -14,8 +14,22 @@
 	</head>
 	
 	<body class="friends">
+		<%
+		UserService userService = UserServiceFactory.getUserService();
+		User user = userService.getCurrentUser();
+		if (user == null){
+			response.sendRedirect("/index.jsp");
+			return;
+		}
+		%>
+	
 		<div class="lines"></div>
 		<p class="title">Manage Friends</p>
+		
+		<a href="home.jsp" class="homelink">Home</a>
+		<a href="<%= userService.createLogoutURL("/index.jsp") %>" class="outlink">Log Out</a>
+		
+		
 		
 		<ul class="list">
 			<li> </li>
