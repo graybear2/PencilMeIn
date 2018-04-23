@@ -24,17 +24,17 @@ public class Event {
             switch(day) {
             case SUNDAY: dayInt += 0;
             break;
-            case MONDAY: dayInt += 010000;
+            case MONDAY: dayInt += 10000;
             break;
-            case TUESDAY: dayInt += 020000;
+            case TUESDAY: dayInt += 20000;
             break;
-            case WEDNESDAY: dayInt += 030000;
+            case WEDNESDAY: dayInt += 30000;
             break;
-            case THURSDAY: dayInt += 040000;
+            case THURSDAY: dayInt += 40000;
             break;
-            case FRIDAY: dayInt += 050000;
+            case FRIDAY: dayInt += 50000;
             break;
-            case SATURDAY: dayInt += 060000;
+            case SATURDAY: dayInt += 60000;
             break;
         }
             
