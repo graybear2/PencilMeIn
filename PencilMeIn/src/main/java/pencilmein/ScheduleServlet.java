@@ -13,8 +13,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+
 public class ScheduleServlet extends HttpServlet {
     
+    static boolean DEBUG = true;
     ArrayList<Day> days;
     
     public ScheduleServlet() {
@@ -46,7 +49,7 @@ public class ScheduleServlet extends HttpServlet {
             String endString = req.getParameter("end");
             
             
-            //Convert to military times
+            //Convert to 24 hour time
             int day, shour, smin, ehour, emin;
 
             String[] startParts = startString.split(":");
@@ -101,12 +104,14 @@ public class ScheduleServlet extends HttpServlet {
                 days.add(Day.SATURDAY);
             }
             
-            System.out.println(name);
-            System.out.println(startString);
-            System.out.println(endString);
-            
-            for(Day d : days) {
-                System.out.println(d.toString());
+            if(DEBUG) {
+                System.out.println(name);
+                System.out.println(startString);
+                System.out.println(endString);
+                
+                for(Day d : days) {
+                    System.out.println(d.toString());
+                }
             }
  
             Event e = new Event(name, days, shour, smin, ehour, emin);
