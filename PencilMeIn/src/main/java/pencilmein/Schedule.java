@@ -1,9 +1,19 @@
 package pencilmein;
 
 import java.util.ArrayList;
+import java.util.SortedSet;
+
+import javax.jdo.annotations.Serialized;
+
+import com.googlecode.objectify.annotation.Id;
 
 public class Schedule {
-    ArrayList<Event> schedule;
+    @Id Long id;
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Serialized ArrayList<Event> schedule;
+    @Serialized SortedSet<Integer> busy;
     
     public Schedule() {
         schedule = new ArrayList<Event>();

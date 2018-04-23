@@ -21,5 +21,10 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/guava-16.0.1.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/objectify-5.0.3.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jstl-1.2.jar"/>
+	<classpathentry kind="con" path="com.google.cloud.tools.eclipse.appengine.libraries/master-container">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

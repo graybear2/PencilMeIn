@@ -1,20 +1,26 @@
 package pencilmein;
 
+import java.util.SortedSet;
+
 public class Event {
     String name;
-    int day; // 1 = Monday, 2 = Tuesday, etc. 
-    int shour;
-    int sminute;
-    int ehour;
-    int eminute;
+    int day; // 0 = Sunday, 1 = Monday, 2 = Tuesday, etc. 
+    int startHour;
+    int startMinute;
+    int endHour;
+    int endMinute;
+    
+    boolean am;
+    
+    SortedSet<Integer> times;
     
     public Event (String n, int d, int sh, int sm, int eh, int em) {
         name = n;
         day = d;
-        shour = sh;
-        sminute = sm;
-        ehour = eh;
-        eminute = em;
+        startHour = sh;
+        startMinute = sm;
+        endHour = eh;
+        endMinute = em;
     }
 
     public String getName() {
@@ -34,35 +40,35 @@ public class Event {
     }
 
     public int getShour() {
-        return shour;
+        return startHour;
     }
 
     public void setShour(int shour) {
-        this.shour = shour;
+        this.startHour = shour;
     }
 
     public int getSminute() {
-        return sminute;
+        return startMinute;
     }
 
     public void setSminute(int sminute) {
-        this.sminute = sminute;
+        this.startMinute = sminute;
     }
 
     public int getEhour() {
-        return ehour;
+        return endHour;
     }
 
     public void setEhour(int ehour) {
-        this.ehour = ehour;
+        this.endHour = ehour;
     }
 
     public int getEminute() {
-        return eminute;
+        return endMinute;
     }
 
     public void setEminute(int eminute) {
-        this.eminute = eminute;
+        this.endMinute = eminute;
     }
     
 }
