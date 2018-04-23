@@ -22,11 +22,11 @@ public class Event {
             switch(day) {
             case SUNDAY: dayInt += 0;
             case MONDAY: dayInt += 010000;
-            case TUESDAY: dayInt += 020000;
-            case WEDNESDAY: dayInt += 030000;
-            case THURSDAY: dayInt += 040000;
-            case FRIDAY: dayInt += 050000;
-            case SATURDAY: dayInt += 060000;
+            case TUESDAY: dayInt += 20000;
+            case WEDNESDAY: dayInt += 30000;
+            case THURSDAY: dayInt += 40000;
+            case FRIDAY: dayInt += 50000;
+            case SATURDAY: dayInt += 60000;
             }
             
             System.out.println("Integer for day is " + dayInt);
