@@ -11,6 +11,8 @@ public class Event {
     public Event (String n, ArrayList<Day> d, int sh, int sm, int eh, int em) {
         name = n;
         times = getTimes(d, sh, sm, eh, em);
+        
+        System.out.print(n + " " + d.get(0) + " " + sh + " " + sm + " " + eh + " " + em);
     }
     
     private TreeSet<Integer> getTimes(ArrayList<Day> d, int sh, int sm, int eh, int em) {
@@ -21,13 +23,20 @@ public class Event {
             Integer dayInt = 0;
             switch(day) {
             case SUNDAY: dayInt += 0;
+            break;
             case MONDAY: dayInt += 010000;
+            break;
             case TUESDAY: dayInt += 020000;
+            break;
             case WEDNESDAY: dayInt += 030000;
+            break;
             case THURSDAY: dayInt += 040000;
+            break;
             case FRIDAY: dayInt += 050000;
+            break;
             case SATURDAY: dayInt += 060000;
-            }
+            break;
+        }
             
             System.out.println("Integer for day is " + dayInt);
             
@@ -47,7 +56,9 @@ public class Event {
                     sh = 0;
                 }
                 converted.add(add);
+
                 System.out.println("Added this time " + add);
+
             }
         }
         return converted;

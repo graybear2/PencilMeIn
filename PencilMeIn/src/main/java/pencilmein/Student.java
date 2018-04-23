@@ -98,6 +98,7 @@ public class Student {
     
     public void addEvent(Event e) {
         schedule.addEvent(e);
+        GoogleCloud.saveStudent(this);
     }
     
     // later, add ability to edit schedule

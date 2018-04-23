@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 public class ScheduleServlet extends HttpServlet {
     
     static boolean DEBUG = true;
-    ArrayList<Day> days;
     
     public ScheduleServlet() {
         
@@ -50,7 +49,9 @@ public class ScheduleServlet extends HttpServlet {
             
             
             //Convert to 24 hour time
-            int day, shour, smin, ehour, emin;
+            int shour, smin, ehour, emin;
+            
+            ArrayList<Day> days = new ArrayList<Day>();
 
             String[] startParts = startString.split(":");
             shour = Integer.parseInt(startParts[0]);
@@ -118,6 +119,8 @@ public class ScheduleServlet extends HttpServlet {
             
             Student s = ofy().load().type(Student.class).id(user.getEmail()).now();    
             s.addEvent(e);
+            
+            System.out.println(s.getSchedule().getEvents().get(0).getName());
         }
         
         //Remove an event
