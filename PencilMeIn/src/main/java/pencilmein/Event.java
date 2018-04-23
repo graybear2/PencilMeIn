@@ -38,6 +38,9 @@ public class Event {
                     sm = 0;
                     sh++;
                 }
+                if (sh == 24) {
+                    sh = 0;
+                }
                 converted.add(add);
             }
             
