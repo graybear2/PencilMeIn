@@ -29,7 +29,12 @@ public class Event {
             case SATURDAY: dayInt += 060000;
             }
             
+            System.out.println("Integer for day is " + dayInt);
+            
             while (sh < eh || sm < em) {
+                
+                System.out.println("SH " + sh + " EH " + eh + " SM " + sm + " EM " + em);
+                
                 Integer add = dayInt;
                 add += sh*100;
                 add += sm;
@@ -42,6 +47,7 @@ public class Event {
                     sh = 0;
                 }
                 converted.add(add);
+                System.out.println("Added this time " + add);
             }
         }
         return converted;
