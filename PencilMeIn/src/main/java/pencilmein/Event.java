@@ -43,9 +43,7 @@ public class Event {
                 }
                 converted.add(add);
             }
-            
         }
-        
         return converted;
     }
 
