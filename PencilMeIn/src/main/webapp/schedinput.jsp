@@ -9,6 +9,7 @@
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.util.GregorianCalendar"%>
+<%@ page import="java.util.HashMap"%>
 
 
 <html>
@@ -66,21 +67,20 @@
 		</ul>
 		
 		<%
-		Student student = Student.getStudent(UserServiceFactory.getUserService().getCurrentUser());
-		Schedule sched =  student.getSchedule();
-		ArrayList<Event> events = sched.getEvents();
-		    		
-				for (Event event : events){   
-				    System.out.println(event.getName());
-				    
-					%>
-	     				<c:out value="${name} ${day}" escapeXml="false" />		    				
-	 		    			<%
-				}
+			Student student = Student.getStudent(UserServiceFactory.getUserService().getCurrentUser());
+			Schedule sched =  student.getSchedule();
+			ArrayList<Event> events = sched.getEvents();
+			
+			HashMap<Integer, String> combinedEvents = new HashMap<Integer, String>();
+			
+			for(Event e: events) {
+			    System.out.println(e.getName());
+			    for(Integer i : e.getTimes()) {
+			        combinedEvents.put(i, e.getName());
+			        System.out.println(i);
+			    }
+			}
 		%> 
-		
-		
-		
 		
 		<!-- LIST SCHEDULE EVENTS HERE -->
 			<ul class="weekdays">
@@ -117,13 +117,22 @@
 						t += 12;
 				}
 				%> <c:out value="${time}" escapeXml="false"/>  <%
+				        
+      
+				
 				for (int mins = 0; mins < 4; mins++){
 					for (int days = 0; days < 7; days++){
-						if (days==4) {							//if event at this time
-							%> <li class="busy">day</li>
+						if (combinedEvents.containsKey(days * 10000 + hours * 100 + mins * 15)) {							//if event at this time
+							%>
+							<li class="busy">
+								<%
+								pageContext.setAttribute("eventName", combinedEvents.get(days * 10000 + hours * 100 + mins * 15));
+								%>
+								<c:out value="${eventName}" escapeXml="false"/>
+							</li>
 						<% }
 						else{
-							%> <li class="free">day</li>
+							%> <li class="free"></li>
 						<% }
 					}
 					%> <li></li> <%

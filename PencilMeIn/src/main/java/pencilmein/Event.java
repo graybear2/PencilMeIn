@@ -25,17 +25,22 @@ public class Event implements Serializable {
         System.out.print(n + " " + d.get(0) + " " + sh + " " + sm + " " + eh + " " + em);
     }
     
-    private TreeSet<Integer> getTimes(ArrayList<Day> d, int sh, int sm, int eh, int em) {
+    private TreeSet<Integer> getTimes(ArrayList<Day> d, int sHour, int sMin, int eHour, int eMin) {
         
         TreeSet<Integer> converted = new TreeSet<Integer>();
         
         for (Day day : d) {
+            
+            int sh = sHour;
+            int sm= sMin;
+            int eh = eHour;
+            int em = eMin;
+            
             int dayInt = 0;
             switch(day) {
             case SUNDAY: dayInt += 0;
             break;
             case MONDAY: dayInt += 10000;            
-            System.out.println("mon" + dayInt);
             break;
             case TUESDAY: dayInt += 20000;
             break;
