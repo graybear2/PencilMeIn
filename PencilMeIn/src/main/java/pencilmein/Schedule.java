@@ -3,16 +3,15 @@ package pencilmein;
 import java.util.ArrayList;
 import java.util.SortedSet;
 
-import javax.jdo.annotations.Serialized;
-
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Serialize;
 
 public class Schedule {
     @Id Long id;
     
     private static final long serialVersionUID = 1L;
     
-    @Serialized ArrayList<Event> schedule;
+    @Serialize ArrayList<Event> schedule;
     
     public Schedule() {
         schedule = new ArrayList<Event>();

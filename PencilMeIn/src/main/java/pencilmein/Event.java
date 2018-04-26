@@ -1,10 +1,18 @@
 package pencilmein;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-public class Event {
+import com.googlecode.objectify.annotation.Index;
+import com.googlecode.objectify.annotation.Serialize;
+
+public class Event implements Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3861592925641019760L;
     String name;
     TreeSet<Integer> times;
     

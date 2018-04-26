@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import java.io.ObjectOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -15,6 +16,8 @@ import com.google.appengine.api.users.UserServiceFactory;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
+import com.googlecode.objectify.annotation.Serialize;
+
 import pencilmein.Student;
 
 @Entity
@@ -22,10 +25,8 @@ public class Student {
     @Id String id;
     @Index User user;
     @Index Schedule schedule;
-    ArrayList<User> friends;
-    ArrayList<User> requests;
-    byte[] friendBytes;
-    byte[] requestBytes;
+    @Serialize ArrayList<User> friends;
+    @Serialize ArrayList<User> requests;
     
     private Student() {}
     

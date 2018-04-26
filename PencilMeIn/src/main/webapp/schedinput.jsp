@@ -66,15 +66,17 @@
 		</ul>
 		
 		<%
-		/* Student student = Student.getStudent(UserServiceFactory.getUserService().getCurrentUser());
+		Student student = Student.getStudent(UserServiceFactory.getUserService().getCurrentUser());
 		Schedule sched =  student.getSchedule();
-		ArrayList<Event> events = sched.getEvents(); */
+		ArrayList<Event> events = sched.getEvents();
 		    		
-	//			for (Event event : events){   
+				for (Event event : events){   
+				    System.out.println(event.getName());
+				    
 					%>
-	<!--     				<c:out value="${name} ${day}" escapeXml="false" />		    				
-	 -->		    			<%
-	//			}
+	     				<c:out value="${name} ${day}" escapeXml="false" />		    				
+	 		    			<%
+				}
 		%> 
 		
 		

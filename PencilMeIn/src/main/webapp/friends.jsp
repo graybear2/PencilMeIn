@@ -44,6 +44,9 @@
 			<li class="subtitle">Friend Requests:</li>
 				<%
 				Student student = Student.getStudent(UserServiceFactory.getUserService().getCurrentUser());
+				
+				System.out.println(student.getRequests());
+				
 				ArrayList<User> requests = student.getRequests();
 				for (User friend : requests){ 
 				%>
