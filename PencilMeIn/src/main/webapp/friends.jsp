@@ -10,54 +10,78 @@
 	<head>
 		<title>Pencil Me In</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<link href="https://fonts.googleapis.com/css?family=Homemade+Apple|Raleway" rel="stylesheet">
 	</head>
 	
 	<body class="friends">
-		<h1> Manage Friends </h1>
-		<br>
-		
-		<!--  ADD FRIENDS -->
-		<div class="addfriend"><form action="/addfriend" method="post">
-			Friend's Email: <div class="eventinput"><textarea name="email" rows="1" cols="30"></textarea></div>
-			<div class="eventinput"><input type="submit" value="Post" /></div>
-		</form></div>
-		<p>${message}</p>
-		
-		
-		
-		<!--  if there are friend requests -->
 		<%
-		Student student = Student.getStudent(UserServiceFactory.getUserService().getCurrentUser());
-		ArrayList<User> requests = student.getRequests();
+		UserService userService = UserServiceFactory.getUserService();
+		User user = userService.getCurrentUser();
+		if (user == null){
+			response.sendRedirect("/index.jsp");
+			return;
+		}
 		%>
-		<h2>Friend requests:</h2>
-		<% for (User friend : requests){   %>
-			<div class="friendreq"><form action="/addfriend" method="post">
+	
+		<div class="lines"></div>
+		<p class="title">Manage Friends</p>
+		
+		<a href="home.jsp" class="homelink">Home</a>
+		<a href="<%= userService.createLogoutURL("/index.jsp") %>" class="outlink">Log Out</a>
+		
+		
+		
+		<ul class="list">
+			<li> </li>
+			<li class="subtitle">Add a friend:</li>
+			<li> 
+				<div class="addfriend"><form action="/addfriend" method="post">
+					Friend's Email: <div class="eventinput"><textarea name="email" rows="1" cols="30"></textarea></div>
+					<div class="eventinput"><input type="submit" value="Post" /></div>
+				</form></div>
+			</li>
+			<li class="msg">${message}</li>
+			<li class="subtitle">Friend Requests:</li>
 				<%
+				Student student = Student.getStudent(UserServiceFactory.getUserService().getCurrentUser());
+				
+				System.out.println(student.getRequests());
+				
+				ArrayList<User> requests = student.getRequests();
+				for (User friend : requests){ 
+				%>
+					<li><div class="friendreq"><form action="/addfriend" method="post">
+					<%
 					pageContext.setAttribute("name", friend.getNickname());
 					pageContext.setAttribute("email", friend.getEmail());
-				%>
-				<c:out value="${name}" escapeXml="false" />
-				<button type="submit" formmethod="post" name="accept" value="${email}">Accept</button>
-				<button type="submit" formmethod="post" name="decline" value="${email}">Decline</button>
-			</form></div>
-			
-		<%}
-		%>
-		
-		<h2>Pending requests:</h2>
-		<!-- print pending friend requests -->
-		
-		<%ArrayList<User> friends = student.getFriends();%>
-		<h2>List of friends:</h2>
-		<% 
-			for (User friend : friends){   
+					%>
+					<c:out value="${name}" escapeXml="false" />
+					<button type="submit" formmethod="post" name="accept" value="${email}">Accept</button>
+					<button type="submit" formmethod="post" name="decline" value="${email}">Decline</button>
+					</form></div></li>
+				<%}
+				%>	
+		    <li> </li>
+		    <li class="subtitle">Friends:</li>
+		    		<%ArrayList<User> friends = student.getFriends();%>
+		    		<% 
+				for (User friend : friends){   
 				pageContext.setAttribute("name", friend.getNickname());
-		%>
-		<c:out value="${name}" escapeXml="false" />
-		<%
-			}
-		%>
+				%>
+		    		<li> <c:out value="${name}" escapeXml="false" /> </li>
+		    		<%
+				}
+				%>
+		    <li> </li>
+		    <li> </li>
+		    <li> </li>
+		    <li> </li>
+		    <li> </li>
+		    <li> </li>
+		</ul>
+		
+	
+	
 			
 	
 	</body>

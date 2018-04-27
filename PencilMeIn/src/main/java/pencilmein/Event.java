@@ -1,20 +1,83 @@
 package pencilmein;
 
-public class Event {
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.SortedSet;
+import java.util.TreeSet;
+
+import com.googlecode.objectify.annotation.Index;
+import com.googlecode.objectify.annotation.Serialize;
+
+public class Event implements Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3861592925641019760L;
     String name;
-    int day; // 1 = Monday, 2 = Tuesday, etc. 
-    int shour;
-    int sminute;
-    int ehour;
-    int eminute;
+    TreeSet<Integer> times;
     
-    public Event (String n, int d, int sh, int sm, int eh, int em) {
+    private Event() {}
+            
+    public Event (String n, ArrayList<Day> d, int sh, int sm, int eh, int em) {
         name = n;
-        day = d;
-        shour = sh;
-        sminute = sm;
-        ehour = eh;
-        eminute = em;
+        times = getTimes(d, sh, sm, eh, em);
+        
+        System.out.print(n + " " + d.get(0) + " " + sh + " " + sm + " " + eh + " " + em);
+    }
+    
+    private TreeSet<Integer> getTimes(ArrayList<Day> d, int sHour, int sMin, int eHour, int eMin) {
+        
+        TreeSet<Integer> converted = new TreeSet<Integer>();
+        
+        for (Day day : d) {
+            
+            int sh = sHour;
+            int sm= sMin;
+            int eh = eHour;
+            int em = eMin;
+            
+            int dayInt = 0;
+            switch(day) {
+            case SUNDAY: dayInt += 0;
+            break;
+            case MONDAY: dayInt += 10000;            
+            break;
+            case TUESDAY: dayInt += 20000;
+            break;
+            case WEDNESDAY: dayInt += 30000;
+            break;
+            case THURSDAY: dayInt += 40000;
+            break;
+            case FRIDAY: dayInt += 50000;
+            break;
+            case SATURDAY: dayInt += 60000;
+            break;
+        }
+            
+            System.out.println("Integer for day is " + dayInt);
+            
+            while (sh < eh || sm < em) {
+                
+                System.out.println("SH " + sh + " EH " + eh + " SM " + sm + " EM " + em);
+                
+                int add = dayInt;
+                add += sh*100;
+                add += sm;
+                sm += 15;
+                if (sm == 60) {
+                    sm = 0;
+                    sh++;
+                }
+                if (sh == 24) {
+                    sh = 0;
+                }
+                converted.add(new Integer(add));
+
+                System.out.println("Added this time " + add);
+
+            }
+        }
+        return converted;
     }
 
     public String getName() {
@@ -25,44 +88,7 @@ public class Event {
         this.name = name;
     }
     
-    public int getDay() {
-        return day;
+    public TreeSet<Integer> getTimes() {
+        return times;
     }
-    
-    public void setDay(int day) {
-        this.day = day;
-    }
-
-    public int getShour() {
-        return shour;
-    }
-
-    public void setShour(int shour) {
-        this.shour = shour;
-    }
-
-    public int getSminute() {
-        return sminute;
-    }
-
-    public void setSminute(int sminute) {
-        this.sminute = sminute;
-    }
-
-    public int getEhour() {
-        return ehour;
-    }
-
-    public void setEhour(int ehour) {
-        this.ehour = ehour;
-    }
-
-    public int getEminute() {
-        return eminute;
-    }
-
-    public void setEminute(int eminute) {
-        this.eminute = eminute;
-    }
-    
 }
