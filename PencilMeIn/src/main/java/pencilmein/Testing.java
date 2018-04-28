@@ -10,6 +10,8 @@ import static com.google.appengine.api.datastore.FetchOptions.Builder.withLimit;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 
+import java.util.ArrayList;
+
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -131,13 +133,51 @@ public class Testing {
 	}
 	
 	@Test
-	public void testEventInput(){
+	public void testAddDeleteFriend(){
+		User u1 = new User("kevinbrill11@gmail.com", "gmail.com");
+		User u2 = new User("anji3.t@gmail.com", "gmail.com");
+		Student s1 = new Student(u1);
+		Student s2 = new Student(u2);
 		
+		s2.addRequest(s1.getUser());
+		
+		s2.removeRequest(s1.getUser());
+		
+		assertEquals(0, s2.getRequests().size());
+	}
+	
+	@Test
+	public void testEventInput(){
+		User u1 = new User("kevinbrill11@gmail.com", "gmail.com");
+		Student s1 = new Student(u1);
+		ArrayList<Day> days = new ArrayList<Day>();
+		days.add(Day.TUESDAY);
+		days.add(Day.THURSDAY);
+		
+		Event e1 = new Event("test", days, 7, 0, 8, 15);
+		Event e2 = new Event("alsoTest", days, 13, 15, 15, 0);
+		s1.addEvent(e1);
+		s1.addEvent(e2);
+		
+		assertEquals(2, s1.getSchedule().getSize());
 	}
 	
 	@Test
 	public void testEventDelete(){
+		User u1 = new User("kevinbrill11@gmail.com", "gmail.com");
+		Student s1 = new Student(u1);
+		ArrayList<Day> days = new ArrayList<Day>();
+		days.add(Day.TUESDAY);
+		days.add(Day.THURSDAY);
 		
+		Event e1 = new Event("test", days, 7, 0, 8, 15);
+		Event e2 = new Event("alsoTest", days, 13, 15, 15, 0);
+		s1.addEvent(e1);
+		s1.addEvent(e2);
+		
+		s1.removeEvent(e1);
+		
+		assertEquals(1, s1.getSchedule().getSize());
 	}
 	
 	

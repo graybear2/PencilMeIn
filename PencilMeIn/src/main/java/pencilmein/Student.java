@@ -103,6 +103,8 @@ public class Student {
     }
     
     // later, add ability to edit schedule
-    // public void removeEvent()
+    public void removeEvent(Event e){
+    	//implement
+    }
     
 }
