@@ -99,22 +99,17 @@
 		<%			
 			Calendar cal = GregorianCalendar.getInstance();
 			cal.setTime(new Date());
-			int start = cal.get(Calendar.HOUR_OF_DAY);
-			int leftBound = 12-start;
-			int rightBound = 23-start;
+			int realTime = cal.get(Calendar.HOUR_OF_DAY);
 			for (int hours = 0; hours < 24; hours++){
-				int t = (hours+start)%12;
-				if (t==0)
-					t=12;
-				if (hours < leftBound || hours > rightBound){
-					pageContext.setAttribute("time", "<li>" + t + ":00am</li>");
-					if(t==12)
-						t=0;
+				if (realTime < 12){
+					if(realTime == 0) {realTime = 12;}
+					pageContext.setAttribute("time", "<li>" + realTime + ":00am</li>");
+					if(realTime == 12) {realTime = 0;}
 				}
 				else{
-					pageContext.setAttribute("time", "<li>" + t + ":00pm</li>");
-					if(t != 12)
-						t += 12;
+					if(realTime != 12) {realTime -= 12;}
+					pageContext.setAttribute("time", "<li>" + realTime + ":00pm</li>");
+					if(realTime != 12) {realTime += 12;}
 				}
 				%> <c:out value="${time}" escapeXml="false"/>  <%
 				        
@@ -122,11 +117,11 @@
 				
 				for (int mins = 0; mins < 4; mins++){
 					for (int days = 0; days < 7; days++){
-						if (combinedEvents.containsKey(days * 10000 + hours * 100 + mins * 15)) {							//if event at this time
+						if (combinedEvents.containsKey(days * 10000 + realTime * 100 + mins * 15)) {							//if event at this time
 							%>
 							<li class="busy">
 								<%
-								pageContext.setAttribute("eventName", combinedEvents.get(days * 10000 + hours * 100 + mins * 15));
+								pageContext.setAttribute("eventName", combinedEvents.get(days * 10000 + realTime * 100 + mins * 15));
 								%>
 								<c:out value="${eventName}" escapeXml="false"/>
 							</li>
@@ -138,6 +133,7 @@
 					%> <li></li> <%
 				}
 				%> <hr> <%
+				realTime = (realTime+1) % 24;
 			}
         %>
         
