@@ -4,6 +4,8 @@
 <%@ page import="com.google.appengine.api.users.UserService"%>
 <%@ page import="com.google.appengine.api.users.UserServiceFactory"%>
 <%@ page import="static com.googlecode.objectify.ObjectifyService.ofy"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 
 
 <html>
@@ -48,8 +50,20 @@
 				</div>
 			</li>
 		    <li> </li>
-			<li>Welcome!</li>
-			<li> </li>
+			<li class="subtitle">Friends:</li>
+		    		<%ArrayList<User> friends = student.getFriends();%>
+		    		<% 
+				for (User friend : friends){   
+				pageContext.setAttribute("name", friend.getNickname());
+				%>
+		    		<li>
+					<input type="checkbox" checked="checked">
+  					<span class="checkmark"></span>
+  					<c:out value="${name}" escapeXml="false" />
+		    		</li>
+		    		<%
+				}
+				%>
 		    <li> </li>
 		    <li> </li>
 		    <li> </li>
