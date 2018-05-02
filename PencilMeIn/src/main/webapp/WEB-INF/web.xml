@@ -43,4 +43,13 @@
 		<servlet-name>friend</servlet-name>
 		<url-pattern>/addfriend</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>mergesched</servlet-name>
+		<servlet-class>pencilmein.MergeScheduleServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>mergesched</servlet-name>
+		<url-pattern>/mergesched</url-pattern>
+	</servlet-mapping>
 </web-app>

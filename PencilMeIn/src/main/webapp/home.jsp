@@ -6,6 +6,8 @@
 <%@ page import="static com.googlecode.objectify.ObjectifyService.ofy"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%@ page import="java.util.HashMap"%>
+
 
 
 <html>
@@ -62,6 +64,16 @@
   					<c:out value="${name}" escapeXml="false" />
 		    		</li>
 		    		<%
+		    		
+		    		
+			        
+			        HashMap<Integer, Integer> overlappingSchedule = (HashMap<Integer, Integer>)request.getAttribute("mergedMap");
+			        if (overlappingSchedule != null) {
+			            for(Integer i : overlappingSchedule.values()) {
+			                System.out.println(i);
+			            }
+			            System.out.println(overlappingSchedule.values());
+			        }
 				}
 				%>
 		    <li> </li>

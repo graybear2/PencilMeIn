@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -56,8 +57,16 @@ public class MergeScheduleServlet {
             selectedFriends.add(Student.getStudent(user));
             //sends the merged schedule back to the user side jsp
             req.setAttribute("mergedMap", Schedule.scheduleMerge(selectedFriends));
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
-            dispatcher.forward(req, resp);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/home.jsp");
+            try {
+                dispatcher.forward(req, resp);
+            } catch (ServletException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     }
 }

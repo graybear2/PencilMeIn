@@ -3,7 +3,6 @@
 <%@ page import="com.google.appengine.api.users.User" %>
 <%@ page import="com.google.appengine.api.users.UserService" %>
 <%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
-<%@ page import="java.util.HashMap"%>
 
 <html>
 	<head>
@@ -22,11 +21,6 @@
 				response.sendRedirect("/home");
 		    }
 		    else{
-		        
-		        HashMap<Integer, Integer> overlappingSchedule = request.getParameterValues("mergedMap");
-		        if (overlappingSchedule != null) {
-		            
-		        }
 		    	
 		%>
 		<p class="title">PencilMeIn</p>
