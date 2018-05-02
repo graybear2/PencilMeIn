@@ -12,7 +12,7 @@
 	</head>
 	
 	<body>
-		<div class="lines"></div>
+		<div class="linesshort"></div>
 		<%
 		    UserService userService = UserServiceFactory.getUserService();
 		    User user = userService.getCurrentUser();

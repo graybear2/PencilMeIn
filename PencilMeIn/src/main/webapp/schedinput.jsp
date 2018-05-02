@@ -20,13 +20,18 @@
 
 	<body>
 		<% UserService userService = UserServiceFactory.getUserService(); %>
-		<div class="lines"></div>
-		<p class="title">Edit Schedule</p>
-		
-		<a href="home.jsp" class="homelink">Home</a>
-		<a href="<%= userService.createLogoutURL("/index.jsp") %>" class="outlink">Log Out</a>
+		<div class="linessched"></div>
+		<p class="title">PencilMeIn</p>
 		
 		<ul class="list"> 
+			<li> 
+				<div class="menu">
+					<a href="/home.jsp" class="homelink">Home</a>
+					<a href="/schedinput.jsp" class="activesched">Edit Schedule</a>
+					<a href="/friends.jsp" class="friendslink">Manage Friends</a>
+					<a href="<%= userService.createLogoutURL("/index.jsp") %>" class="outlink">Log Out</a>
+				</div>
+			</li>
 			<li> </li>
 			<li class="subtitle">Add Event:</li>
 			<li>
@@ -54,15 +59,7 @@
 			</li>
 			<li> </li>
 			<li class="subtitle">My Schedule:</li>
-			<li> </li>
-			<li> </li>
-			<li> </li>
-			<li> </li>
-			<li> </li>
-			<li> </li>
-			
-		
-		
+			<li> </li>	
 		</ul>
 		
 		<%

@@ -68,6 +68,24 @@ body {
   margin-left: 80px;
 }
 
+.linesshort {
+  border-left: 1px solid #ffaa9f;
+  border-right: 1px solid #ffaa9f;
+  width: 2px;
+  float: left;
+  min-height: 100%;
+  margin-left: 80px;
+}
+
+.linessched {
+  border-left: 1px solid #ffaa9f;
+  border-right: 1px solid #ffaa9f;
+  width: 2px;
+  float: left;
+  height: 510px;
+  margin-left: 80px;
+}
+
 .subtitle {
 	font-weight: bold;
 }
@@ -122,30 +140,73 @@ hr {
 
 .homelink{
 	position: absolute;
-	top: 83px;
-	left: 100px;
+	left: 20%;
 	font-size: 20px;
 	font-family: 'Homemade Apple', cursive;
 	text-decoration: none;
 	color: black;
 }
 
-.homelink:hover{
-	color: lightblue;
+.schedlink{
+	position: absolute;
+	left: 35%;
+	font-size: 20px;
+	font-family: 'Homemade Apple', cursive;
+	text-decoration: none;
+	color: black;
+}
+
+.friendslink{
+	position: absolute;
+	right: 30%;
+	font-size: 20px;
+	font-family: 'Homemade Apple', cursive;
+	text-decoration: none;
+	color: black;
 }
 
 .outlink{
 	position: absolute;
-	top: 83px;
-	right: 10px;
+	right: 15%;
 	font-size: 20px;
 	font-family: 'Homemade Apple', cursive;
 	text-decoration: none;
 	color: black;
 }
 
-.outlink:hover{
+a:hover{
 	color: lightblue;
+}
+
+.activehome {
+	position: absolute;
+	left: 20%;
+	font-size: 20px;
+	font-family: 'Homemade Apple', cursive;
+	text-decoration: none;
+	color: lightblue;
+}
+
+.activesched {
+	position: absolute;
+	left: 35%;
+	font-size: 20px;
+	font-family: 'Homemade Apple', cursive;
+	text-decoration: none;
+	color: lightblue;
+}
+
+.activefriends {
+	position: absolute;
+	right: 30%;
+	font-size: 20px;
+	font-family: 'Homemade Apple', cursive;
+	text-decoration: none;
+	color: lightblue;
+}
+
+.menulist {
+	display: inline;
 }
 
 

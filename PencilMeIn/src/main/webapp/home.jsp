@@ -15,7 +15,7 @@
 	</head>
 	
 	<body>
-		<div class="lines"></div>
+		<div class="linesshort"></div>
 		<p class="title">PencilMeIn</p>
 	<%
 	UserService userService = UserServiceFactory.getUserService();
@@ -37,12 +37,18 @@
 	
 	
 	%>
-		<a href="<%= userService.createLogoutURL("/index.jsp") %>" class="outlink">Log Out</a>
 		
 		<ul class="list">
+			<li> 
+				<div class="menu">
+					<a href="/home.jsp" class="activehome">Home</a>
+					<a href="/schedinput.jsp" class="schedlink">Edit Schedule</a>
+					<a href="/friends.jsp" class="friendslink">Manage Friends</a>
+					<a href="<%= userService.createLogoutURL("/index.jsp") %>" class="outlink">Log Out</a>
+				</div>
+			</li>
+		    <li> </li>
 			<li>Welcome!</li>
-			<li><a href="friends.jsp">Manage Friends</a></li>
-			<li><a href="schedinput.jsp">Edit Schedule</a></li>
 			<li> </li>
 		    <li> </li>
 		    <li> </li>
