@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,7 +16,7 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.googlecode.objectify.ObjectifyService;
 
-public class MergeScheduleServlet {
+public class MergeScheduleServlet extends HttpServlet {
     
     ArrayList<Student> selectedFriends;
     
@@ -29,7 +30,7 @@ public class MergeScheduleServlet {
         ObjectifyService.register(Student.class);
     }
     
-    public void doGet(HttpServletRequest req, HttpServletResponse resp) {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) {
         UserService userService = UserServiceFactory.getUserService();
         User user = userService.getCurrentUser();  
         
@@ -45,12 +46,20 @@ public class MergeScheduleServlet {
         
         if(req.getParameter("merge") != null) {
             int numFriends = Integer.parseInt(req.getParameter("numFriends"));
+            if(DEBUG) {
+                System.out.println("numFriends is " + numFriends);
+            }
+            
             ArrayList<Student> selectedFriends = new ArrayList<Student>();
             
             for(int i = 0; i < numFriends; i++) {
                 if(req.getParameter(Integer.toString(i)) != null) {
                     //Adds student to list
                     selectedFriends.add(Student.getStudent(req.getParameter(Integer.toString(i))));
+                    
+                    if(DEBUG) {
+                        System.out.println(req.getParameter(Integer.toString(i)));
+                    }
                 }
             }
             //add myself to the list of selected friends
@@ -58,15 +67,14 @@ public class MergeScheduleServlet {
             //sends the merged schedule back to the user side jsp
             req.setAttribute("mergedMap", Schedule.scheduleMerge(selectedFriends));
             RequestDispatcher dispatcher = req.getRequestDispatcher("/home.jsp");
-            try {
-                dispatcher.forward(req, resp);
-            } catch (ServletException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+        }
+        
+        try {
+            //dispatcher.forward(req, resp);
+            resp.sendRedirect("/home.jsp");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
 }

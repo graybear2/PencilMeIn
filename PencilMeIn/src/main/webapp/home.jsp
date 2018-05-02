@@ -56,19 +56,27 @@
 		    <li class="subtitle">Friends:</li>
 		    
 			<div class="selectfriends">
-				<form action="/mergesched" method="get">
-					<%ArrayList<User> friends = student.getFriends();%>
-		    			<% 
-					for (User friend : friends){   
+				<form action="/mergesched" method="post">
+					<%
+					ArrayList<User> friends = student.getFriends();
+		    		int numFriends = 0;
+					for (User friend : friends){  
 						pageContext.setAttribute("name", friend.getNickname());
 						%>
-		    				<li>
-		    					<input type="checkbox" name="friend">
-								<label for="friend"> <c:out value="${name}" escapeXml="false" /> </label>
-		    				</li>
-		    				<%
-					}
+	    				<li>
+	    					<input type="checkbox" name="<%=numFriends%>" value="<%=friend.getEmail()%>"/>
+							<label for="friend"> <c:out value="${name}" escapeXml="false" /> </label>
+	    				</li>
+	    				<%
+						numFriends++;
+					}					
+					%>
+					<li> 
+					<input type="hidden" name="numFriends" value="<%=numFriends%>" />
+					<input type="submit" name="merge" value="Generate Schedule" /> </li>
+					</form> </div>
 					
+					<%
 			        HashMap<Integer, Integer> overlappingSchedule = (HashMap<Integer, Integer>)request.getAttribute("mergedMap");
 			        if (overlappingSchedule != null) {
 			            for(Integer i : overlappingSchedule.values()) {
@@ -76,9 +84,7 @@
 			            }
 			            System.out.println(overlappingSchedule.values());
 			        }
-					
 					%>
-					<li> <input type="submit" name="add" value="Generate Schedule" /> </li> </form> </div>
 			<li> </li>
 		    <li> </li>
 		    <li> </li>
