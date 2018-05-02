@@ -7,12 +7,17 @@ import com.googlecode.objectify.ObjectifyService;
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+
 public class ScheduleServlet extends HttpServlet {
+    
+    static boolean DEBUG = true;
     
     public ScheduleServlet() {
         
@@ -39,45 +44,15 @@ public class ScheduleServlet extends HttpServlet {
         //Add a new event
         if(req.getParameter("add") != null) {
             String name = req.getParameter("name");
-            //TODO: GET ALL THE DAYS SOMEHOW GOOD LUCK DYLAN
             String startString = req.getParameter("start");
             String endString = req.getParameter("end");
-            System.out.println(name);
-            System.out.println(startString);
-            System.out.println(endString);
-               
-            int day, shour, smin, ehour, emin;
             
-            //TODO: Parse stuff into correct type for Student.addEvent();
-//            dayString.toLowerCase();
-//            
-//            switch(dayString) {
-//                case "monday":
-//                    day = 1;
-//                    break;
-//                case "tuesday":
-//                    day = 2;
-//                    break;
-//                case "wednesday":
-//                    day = 3;
-//                    break;
-//                case "thursdday":
-//                    day = 4;
-//                    break;
-//                case "friday":
-//                    day = 5;
-//                    break;
-//                case "saturday":
-//                    day = 6;
-//                    break;
-//                case "sunday":
-//                    day = 7;
-//                    break;
-//                default:
-//                    day = -1;
-//                    //throw new IllegalArgumentException("Invalid day of the week: " + dayOfWeekArg);
-//            }
             
+            //Convert to 24 hour time
+            int shour, smin, ehour, emin;
+            
+            ArrayList<Day> days = new ArrayList<Day>();
+
             String[] startParts = startString.split(":");
             shour = Integer.parseInt(startParts[0]);
             smin = Integer.parseInt(startParts[1]);
@@ -86,8 +61,66 @@ public class ScheduleServlet extends HttpServlet {
             ehour = Integer.parseInt(endParts[0]);
             emin = Integer.parseInt(endParts[1]);
             
+            
+            if (startString.contains("pm") && (shour != 12)) {
+                shour += 12;
+            }
+            else if (startString.contains("am") && shour == 12) {
+                 shour = 0;
+            }
+            
+            if (endString.contains("pm") && (ehour != 12)) {
+                ehour += 12;
+            }
+            else if (endString.contains("am") && ehour == 12) {
+                 ehour = 0;
+            }
+            
+            //Read all selected days
+            if(req.getParameter("sunday") != null) {
+                days.add(Day.SUNDAY);
+            }
+            
+            if(req.getParameter("monday") != null) {
+                days.add(Day.MONDAY);
+            }
+            
+            if(req.getParameter("tuesday") != null) {
+                days.add(Day.TUESDAY);
+            }
+            
+            if(req.getParameter("wednesday") != null) {
+                days.add(Day.WEDNESDAY);
+            }
+            
+            if(req.getParameter("thursday") != null) {
+                days.add(Day.THURSDAY);
+            }
+            
+            if(req.getParameter("friday") != null) {
+                days.add(Day.FRIDAY);
+            }
+            
+            if(req.getParameter("saturday") != null) {
+                days.add(Day.SATURDAY);
+            }
+            
+            if(DEBUG) {
+                System.out.println(name);
+                System.out.println(startString);
+                System.out.println(endString);
+                
+                for(Day d : days) {
+                    System.out.println(d.toString());
+                }
+            }
+ 
+            Event e = new Event(name, days, shour, smin, ehour, emin);
+            
             Student s = ofy().load().type(Student.class).id(user.getEmail()).now();    
-        //    s.addEvent(name, day, shour, smin, ehour, emin);
+            s.addEvent(e);
+            
+            System.out.println(s.getSchedule().getEvents().get(0).getName());
         }
         
         //Remove an event
