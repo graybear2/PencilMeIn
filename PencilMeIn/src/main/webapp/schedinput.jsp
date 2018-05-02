@@ -100,6 +100,8 @@
 			Calendar cal = GregorianCalendar.getInstance();
 			cal.setTime(new Date());
 			int realTime = cal.get(Calendar.HOUR_OF_DAY);
+			realTime -= 5;
+			if (realTime < 0) realTime += 24;
 			for (int hours = 0; hours < 24; hours++){
 				if (realTime < 12){
 					if(realTime == 0) {realTime = 12;}
