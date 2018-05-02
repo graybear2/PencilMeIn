@@ -28,7 +28,9 @@ public class Student {
     @Serialize ArrayList<User> friends;
     @Serialize ArrayList<User> requests;
     
-    private Student() {}
+    public Student() {
+        schedule = new Schedule();
+    }
     
     public Student(User u) {
         user = u;
