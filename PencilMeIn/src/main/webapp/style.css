@@ -173,19 +173,16 @@ body {
 
 .homefree {
 	margin-bottom: -4px;
-	overflow: scroll;
 	background-color: darkblue;
 	border: 1px solid darkblue;
 }
 
 .blank {
 	margin: -1px;
-	overflow: scroll;
 }
 
 .empty {
 	margin: -1px;
-	overflow: scroll;
 }
 
 .freequarterbusy {
@@ -196,7 +193,6 @@ body {
 
 .quarterhalfbusy {
 	margin-bottom: -4px;
-	overflow: scroll;
 	background-color: DodgerBlue;
 	border: 1px solid DodgerBlue;
 }
@@ -216,7 +212,6 @@ body {
 .allbusy {
 	
 	margin-bottom: -4px;
-	overflow: scroll;
 	background-color: white;
 	border: 1px solid white;
 }
