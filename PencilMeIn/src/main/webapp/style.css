@@ -42,6 +42,7 @@ body {
 }
 
 .list {
+	position: relative;
   color: #555;
   font-size: 22px;
   padding: 0 !important;
@@ -49,6 +50,7 @@ body {
   font-family: 'Raleway', sans-serif;
   border-botom: 1px solid lightblue;
   border-top: 1px solid lightblue;
+  z-index: 0;
 }
 .list li {
   list-style: none;
@@ -66,6 +68,16 @@ body {
   float: left;
   height: 730px;
   margin-left: 80px;
+}
+
+.separator {
+	position: absolute;
+	border: 2px solid lightblue;
+	width: 0px;
+	z-index: -1;
+	height: 600px;
+	margin-top: 205px;
+	margin-left: 22%;
 }
 
 .linesshort {
@@ -207,5 +219,61 @@ a:hover{
 
 .menulist {
 	display: inline;
+}
+
+
+.form {
+	margin-bottom: 0px;
+}
+
+.container {
+	margin-left: 2.5%;
+}
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+	left: 115px;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    margin-top: 5px;
+}
+
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.container input:checked ~ .checkmark {
+    background-color: lightblue;
+}
+
+.genschedbutton {
+	background-color: #eee;
+    border: none;
+    color: gray;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    height: 40px;
+    margin-top: -12px;
+}
+
+.genschedbutton:hover {
+	background-color: lightblue;
+    border: none;
+    color: gray;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    height: 40px;
+    margin-top: -12px;
 }
 
