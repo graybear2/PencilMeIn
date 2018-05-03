@@ -24,7 +24,7 @@
 	<body>
 		<div class="linesshort"></div>
 		<div class="separator"></div>
-		<p class="title">PencilMeIn</p>
+		<p class="title"><a class="titlelink" href="/home.jsp">PencilMeIn</a></p>
 	<%
 	final boolean DEBUG = true;
 	

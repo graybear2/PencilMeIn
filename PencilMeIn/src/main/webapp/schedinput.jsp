@@ -22,7 +22,7 @@
 	<body>
 		<% UserService userService = UserServiceFactory.getUserService(); %>
 		<div class="linessched"></div>
-		<p class="title">PencilMeIn</p>
+		<p class="title"><a class="titlelink" href="/home.jsp">PencilMeIn</a></p>
 		
 		<ul class="list"> 
 			<li> 
@@ -37,9 +37,9 @@
 			<li class="subtitle">Add Event:</li>
 			<li>
 				<div class="in"><form action="/enterevent" method="post">
-				Name: <div class="entername"><textarea name="name" rows="1" cols="30"></textarea></div>
-				Start time: <div class="eventinput"><input name="start" type="time" step="900"></div>
-				End time: <div class="eventinput"><input name="end" type="time" step="900"></div></li>
+				Name:<div class="entername"><textarea name="name" rows="1" cols="30"></textarea></div> <div class="eventinput">&nbsp</div>
+				Start time:<div class="eventinput"><input name="start" type="time" step="900"></div> <div class="eventinput">&nbsp</div>
+				End time:<div class="eventinput"><input name="end" type="time" step="900"></div></li>
 				<li> Day:<div class="eventinput">
 				    <input type="checkbox" id="sunday" name="sunday">
 						<label for="sunday">Su </label>
@@ -54,7 +54,7 @@
 					<input type="checkbox" id="friday" name="friday">
 						<label for="friday">Fr </label>
 					<input type="checkbox" id="saturday" name="saturday">
-						<label for="saturday">Sa </label>
+						<label for="saturday">Sa </label> <div class="eventinput">&nbsp</div>
 				<input type="submit" name="add" value="Add Event" class="addeventbutton"/></div>
 				</form></div>
 			</li>
