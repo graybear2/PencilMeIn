@@ -27,6 +27,15 @@ public class ScheduleServlet extends HttpServlet {
         ObjectifyService.register(Student.class);
     }
     
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) {
+        try {
+            resp.sendRedirect("/schedinput.jsp");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    
     public void doPost(HttpServletRequest req, HttpServletResponse resp) {
         UserService userService = UserServiceFactory.getUserService();
         User user = userService.getCurrentUser();  

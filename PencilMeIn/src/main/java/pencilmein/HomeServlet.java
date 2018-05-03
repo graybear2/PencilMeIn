@@ -24,6 +24,5 @@ public class HomeServlet extends HttpServlet {
     
     public void doPost(HttpServletRequest req, HttpServletResponse resp) {
         
-     
     }
 }
