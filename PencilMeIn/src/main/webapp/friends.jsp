@@ -24,7 +24,7 @@
 		%>
 	
 		<div class="linesshort"></div>
-		<p class="title">PencilMeIn</p>
+		<p class="title"><a class="titlelink" href="/home.jsp">PencilMeIn</a></p>
 		
 		
 		

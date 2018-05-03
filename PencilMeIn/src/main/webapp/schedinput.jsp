@@ -64,7 +64,7 @@
 	<body id="topOfPage">
 		<% UserService userService = UserServiceFactory.getUserService(); %>
 		<div class="linessched"></div>
-		<p class="title">PencilMeIn</p>
+		<p class="title"><a class="titlelink" href="/home.jsp">PencilMeIn</a></p>
 		
 		<ul class="list"> 
 			<li> 
