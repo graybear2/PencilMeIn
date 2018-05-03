@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ScheduleServlet extends HttpServlet {
     
-    static boolean DEBUG = true;
+    static boolean DEBUG = false;
     
     public ScheduleServlet() {
         
@@ -49,6 +49,13 @@ public class ScheduleServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
+        
+        int overwriteId = -1;
+        if(req.getParameter("editEvent") != null && req.getParameter("editEvent").length() > 0) {
+        	System.out.println("editEvent: \"" + req.getParameter("editEvent") + "\"");
+	        overwriteId = Integer.parseInt(req.getParameter("editEvent"));
+        }
+
         
         //Add a new event
         if(req.getParameter("add") != null) {
@@ -120,21 +127,27 @@ public class ScheduleServlet extends HttpServlet {
                 System.out.println(endString);
                 
                 for(Day d : days) {
-                    System.out.println(d.toString());
+                    //System.out.println(d.toString());
                 }
             }
  
             Event e = new Event(name, days, shour, smin, ehour, emin);
             
-            Student s = ofy().load().type(Student.class).id(user.getEmail()).now();    
-            s.addEvent(e);
+            Student s = ofy().load().type(Student.class).id(user.getEmail()).now(); 
             
-            System.out.println(s.getSchedule().getEvents().get(0).getName());
+            if(overwriteId == -1)
+            	s.addEvent(e);
+            else
+            	s.overwriteEvent(e, overwriteId);
+            
+            //System.out.println(s.getSchedule().getEvents().get(0).getName());
         }
         
         //Remove an event
         else if(req.getParameter("remove") != null) {
-            //TODO: Implement event removing
+        	System.out.println("remove event");
+        	Student s = ofy().load().type(Student.class).id(user.getEmail()).now(); 
+        	s.removeEvent(overwriteId);
         }
         
         try {

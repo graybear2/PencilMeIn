@@ -15,14 +15,16 @@ public class Event implements Serializable {
     private static final long serialVersionUID = -3861592925641019760L;
     String name;
     TreeSet<Integer> times;
+    int id;
     
     private Event() {}
             
     public Event (String n, ArrayList<Day> d, int sh, int sm, int eh, int em) {
         name = n;
         times = getTimes(d, sh, sm, eh, em);
+        id = -1;
         
-        System.out.print(n + " " + d.get(0) + " " + sh + " " + sm + " " + eh + " " + em);
+        //System.out.print(n + " " + d.get(0) + " " + sh + " " + sm + " " + eh + " " + em);
     }
     
     private TreeSet<Integer> getTimes(ArrayList<Day> d, int sHour, int sMin, int eHour, int eMin) {
@@ -54,11 +56,11 @@ public class Event implements Serializable {
             break;
         }
             
-            System.out.println("Integer for day is " + dayInt);
+            //System.out.println("Integer for day is " + dayInt);
             
             while (sh < eh || sm < em) {
                 
-                System.out.println("SH " + sh + " EH " + eh + " SM " + sm + " EM " + em);
+                //System.out.println("SH " + sh + " EH " + eh + " SM " + sm + " EM " + em);
                 
                 int add = dayInt;
                 add += sh*100;
@@ -73,7 +75,7 @@ public class Event implements Serializable {
                 }
                 converted.add(new Integer(add));
 
-                System.out.println("Added this time " + add);
+                //System.out.println("Added this time " + add);
 
             }
         }
@@ -90,5 +92,13 @@ public class Event implements Serializable {
     
     public TreeSet<Integer> getTimes() {
         return times;
+    }
+    
+    public void setId(int id) {
+    	this.id = id;
+    }
+    
+    public int getId() {
+    	return id;
     }
 }
