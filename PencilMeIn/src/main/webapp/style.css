@@ -23,6 +23,14 @@
   color: #ffffff;
 }
 
+.entername {
+	display: inline-block;
+}
+
+.eventinput input[type="time"] {
+	border: 1px solid gray;
+}
+
 .friends {
 	text-align: center;
 }
@@ -75,7 +83,7 @@ body {
 	border: 2px solid lightblue;
 	width: 0px;
 	z-index: -1;
-	height: 600px;
+	height: 580px;
 	margin-top: 205px;
 	margin-left: 22%;
 }
@@ -111,6 +119,7 @@ body {
 }
 
 .weekdays {
+	font-family: 'Raleway', sans-serif;
     margin: 0;
     padding: 10px 0;
     background-color:#ddd;
@@ -124,14 +133,22 @@ body {
 }
 
 .days {
+	font-family: 'Raleway', sans-serif;
     background: #eee;
     padding: 0px;
     border: 1px;
     margin-top: 0px;
+
 }
 
+.scroll {
+	overflow: scroll;
+    height: 93.5%;
+}
+
+
 .days li {
-	line-height: 20px;
+	line-height: 18px;
     list-style-type: none;
     display: inline-block;
     width: 12%;
@@ -142,30 +159,60 @@ body {
 
 .busy {
 	background-color: lightblue;
+	border: 1px solid lightblue;
+	margin: -1px;
 }
 
-.free {
+
+
+.homefree {
+	margin-bottom: -4px;
+	overflow: scroll;
 	background-color: darkblue;
+	border: 1px solid darkblue;
+}
+
+.blank {
+	margin: -1px;
+	overflow: scroll;
+}
+
+.empty {
+	margin: -1px;
+	overflow: scroll;
 }
 
 .freequarterbusy {
 	background-color: RoyalBlue;
+	border: 1px solid RoyalBlue;
+	margin: -1px;
 }
 
 .quarterhalfbusy {
+	margin-bottom: -4px;
+	overflow: scroll;
 	background-color: DodgerBlue;
+	border: 1px solid DodgerBlue;
 }
 
 .halfthreequarterbusy {
 	background-color: DeepSkyBlue;
+	border: 1px solid DeepSkyBlue;
+	margin: -1px;
 }
 
 .threequarterallbusy {
 	background-color: lightblue;
+	border: 1px solid lightblue;
+	margin: -1px;
 }
 
 .allbusy {
+	
+	margin-bottom: -4px;
+	overflow: scroll;
 	background-color: white;
+	border: 1px solid white;
 }
 
 hr {
@@ -300,4 +347,40 @@ a:hover{
     height: 40px;
     margin-top: -12px;
 }
+
+.addeventbutton {
+	background-color: #DAEDF4;
+    border: none;
+    color: gray;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    height: 40px;
+    margin-top: -10px;
+    border: 1px solid lightgray;
+}
+
+.addeventbutton:hover {
+	background-color: lightblue;
+    border: none;
+    color: gray;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    height: 40px;
+    margin-top: -12px;
+    border: 1px solid lightgray;
+}
+
+.schedule {
+	position: absolute;
+	right: 0.5%;
+	top: 27%;
+	z-index: 1;
+	width: 76.5%;
+	height: 72%;
+}
+
 

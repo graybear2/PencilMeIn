@@ -1,7 +1,6 @@
 <%@ page import="pencilmein.Student" %>
 <%@ page import="pencilmein.Schedule" %>
 <%@ page import="pencilmein.Event" %>
-<%@ page import="pencilmein.Day" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.google.appengine.api.users.User" %>
 <%@ page import="com.google.appengine.api.users.UserService"%>
