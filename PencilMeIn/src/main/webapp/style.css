@@ -140,6 +140,10 @@ body {
     color: #777;
 }
 
+.busy {
+	background-color: lightblue;
+}
+
 .free {
 	background-color: darkblue;
 }
