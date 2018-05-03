@@ -104,6 +104,18 @@ public class Student {
         GoogleCloud.saveStudent(this);
     }
     
+    public void removeEvent(int eventId) {
+    	if(eventId == -1)
+    		System.out.println("TRYING TO REMOVE EVENT I COULDN'T FIND");
+    	schedule.removeEvent(schedule.getEvent(eventId));
+    	GoogleCloud.saveStudent(this);
+    }
+    
+    public void overwriteEvent(Event e, int eventId) {
+    	schedule.overwriteEvent(e, eventId);
+    	GoogleCloud.saveStudent(this);
+    }
+    
     // later, add ability to edit schedule
     // public void removeEvent()
     
