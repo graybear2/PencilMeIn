@@ -110,11 +110,11 @@
 		    <li> </li>
 		    <li> </li>
 		    <li> </li>
-		    <li> </li>
 		</ul>
 		
 		<!-- LIST SCHEDULE EVENTS HERE -->
-			<ul class="weekdays">
+		<div class="schedule">
+		<ul class="weekdays">
 			<li>  </li>
 			<li>Mo</li>
 			<li>Tu</li>
@@ -125,7 +125,7 @@
 			<li>Su</li>
 		</ul>
 		
-		
+		<div class="scroll">
 		<ul class="days">
 		<%			
 			Calendar cal = GregorianCalendar.getInstance();
@@ -136,19 +136,23 @@
 			for (int hours = 0; hours < 24; hours++){
 				if (realTime < 12){
 					if(realTime == 0) {realTime = 12;}
-					pageContext.setAttribute("time", "<li>" + realTime + ":00am</li>");
+					pageContext.setAttribute("time",realTime + ":00am");
 					if(realTime == 12) {realTime = 0;}
 				}
 				else{
 					if(realTime != 12) {realTime -= 12;}
-					pageContext.setAttribute("time", "<li>" + realTime + ":00pm</li>");
+					pageContext.setAttribute("time",realTime + ":00pm");
 					if(realTime != 12) {realTime += 12;}
 				}
-				%> <c:out value="${time}" escapeXml="false"/>  <%
 				        
       
 				
 				for (int mins = 0; mins < 4; mins++){
+					if (mins == 0) {
+						%> <li class="blank"><c:out value="${time}" escapeXml="false"/></li> <%
+					}else {
+							%> <li class ="blank"></li> <%
+						}
 					for (int days = 0; days < 7; days++){
 					    if(overlappingSchedule != null) {
 					        if (overlappingSchedule.containsKey(days * 10000 + realTime * 100 + mins * 15)) {							//if event at this time
@@ -164,22 +168,24 @@
 								</li>
 							<% }
 							else{
-								%> <li class="free"></li>
+								%> <li class="homefree"> &nbsp </li>
 							<% }
 					    }
 						
 						else{
-							%> <li class="free"></li>
+							%> <li class="empty"></li>
 						<% }
 					}
-					%> <li></li> <%
+					%>  <%
 				}
 				%> <hr> <%
 				realTime = (realTime+1) % 24;
 			}
         %>
         
-        </ul>	
+        </ul>
+        </div>
+        </div>	
 	</body>
 </html>
 

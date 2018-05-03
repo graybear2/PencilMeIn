@@ -37,7 +37,7 @@
 			<li class="subtitle">Add Event:</li>
 			<li>
 				<div class="in"><form action="/enterevent" method="post">
-				Name: <div class="eventinput"><textarea name="name" rows="1" cols="30"></textarea></div>
+				Name: <div class="entername"><textarea name="name" rows="1" cols="30"></textarea></div>
 				Start time: <div class="eventinput"><input name="start" type="time" step="900"></div>
 				End time: <div class="eventinput"><input name="end" type="time" step="900"></div></li>
 				<li> Day:<div class="eventinput">
@@ -55,7 +55,7 @@
 						<label for="friday">Fr </label>
 					<input type="checkbox" id="saturday" name="saturday">
 						<label for="saturday">Sa </label>
-				<input type="submit" name="add" value="Add Event" /></div>
+				<input type="submit" name="add" value="Add Event" class="addeventbutton"/></div>
 				</form></div>
 			</li>
 			<li> </li>
