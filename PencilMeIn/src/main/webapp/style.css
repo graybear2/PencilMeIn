@@ -128,8 +128,28 @@ body {
     color: #777;
 }
 
-.busy {
+.free {
+	background-color: darkblue;
+}
+
+.freequarterbusy {
+	background-color: RoyalBlue;
+}
+
+.quarterhalfbusy {
+	background-color: DodgerBlue;
+}
+
+.halfthreequarterbusy {
+	background-color: DeepSkyBlue;
+}
+
+.threequarterallbusy {
 	background-color: lightblue;
+}
+
+.allbusy {
+	background-color: white;
 }
 
 hr {

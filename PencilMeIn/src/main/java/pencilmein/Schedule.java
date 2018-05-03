@@ -13,6 +13,8 @@ public class Schedule {
     @Id Long id;
     
     private static final long serialVersionUID = 1L;
+
+    private static final boolean DEBUG = true;
     
     @Serialize ArrayList<Event> schedule;
     
@@ -53,6 +55,35 @@ public class Schedule {
             }
         }
     }
+    
+    public static synchronized String howBusy(Integer numSelectedFriends, Integer numBusyFriends) {
+        double proportionalBusy = numBusyFriends.doubleValue()/numSelectedFriends.doubleValue();
+        
+        if(DEBUG) {
+            System.out.println("Proportion busy is: " + proportionalBusy);
+        }
+        
+        if(proportionalBusy == 0) {
+            return "free";
+        }
+        else if((proportionalBusy > 0) && (proportionalBusy <= .25)) {
+            return "freequarterbusy";
+        }
+        else if((proportionalBusy > .25) && (proportionalBusy <= .50)) {
+            return "quarterhalfbusy";
+        }
+        else if((proportionalBusy > .50) && (proportionalBusy <= .75)) {
+            return "halfthreequarterbusy";
+        }
+        else if((proportionalBusy > .75) && (proportionalBusy < 1)) {
+            return "threequarterallbusy";
+        }
+        else if(proportionalBusy >= 1) {
+            return "allbusy";
+        }
+        
+        return "free";
+    } 
    
     /*
     public static void main (String[] args) {

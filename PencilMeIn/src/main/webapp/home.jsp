@@ -6,6 +6,9 @@
 <%@ page import="static com.googlecode.objectify.ObjectifyService.ofy"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%@ page import="java.util.Calendar" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.util.GregorianCalendar"%>
 <%@ page import="java.util.HashMap"%>
 
 
@@ -22,6 +25,8 @@
 		<div class="linesshort"></div>
 		<p class="title">PencilMeIn</p>
 	<%
+	final boolean DEBUG = true;
+	
 	UserService userService = UserServiceFactory.getUserService();
 	User user = userService.getCurrentUser();
 	//System.out.println(user);
@@ -74,17 +79,24 @@
 					<li> 
 					<input type="hidden" name="numFriends" value="<%=numFriends%>" />
 					<input type="submit" name="merge" value="Generate Schedule" /> </li>
-					</form> </div>
+				</form> </div>
 					
-					<%
-			        HashMap<Integer, Integer> overlappingSchedule = (HashMap<Integer, Integer>)request.getAttribute("mergedMap");
-			        if (overlappingSchedule != null) {
-			            for(Integer i : overlappingSchedule.values()) {
-			                System.out.println(i);
-			            }
-			            System.out.println(overlappingSchedule.values());
-			        }
-					%>
+				<%
+		        HashMap<Integer, Integer> overlappingSchedule = (HashMap<Integer, Integer>)request.getAttribute("mergedMap");
+				Integer numSelectedFriends = (Integer)request.getAttribute("numSelectedFriends");
+				
+				if(DEBUG) {
+				    System.out.println("I'm here");
+				}
+				
+		        if (overlappingSchedule != null) {
+		            for(Integer i : overlappingSchedule.values()) {
+		                System.out.println(i);
+		            }
+		            System.out.println(overlappingSchedule.values());
+		        }
+				%>
+					
 			<li> </li>
 		    <li> </li>
 		    <li> </li>
@@ -95,13 +107,74 @@
 		    <li> </li>
 		    <li> </li>
 		</ul>
-
+		
+		<!-- LIST SCHEDULE EVENTS HERE -->
+			<ul class="weekdays">
+			<li>  </li>
+			<li>Mo</li>
+			<li>Tu</li>
+			<li>We</li>
+			<li>Th</li>
+			<li>Fr</li>
+			<li>Sa</li>
+			<li>Su</li>
+		</ul>
 		
 		
-	
-
-		
-		
-		
+		<ul class="days">
+		<%			
+			Calendar cal = GregorianCalendar.getInstance();
+			cal.setTime(new Date());
+			int realTime = cal.get(Calendar.HOUR_OF_DAY);
+			realTime -= 5;
+			if (realTime < 0) realTime += 24;
+			for (int hours = 0; hours < 24; hours++){
+				if (realTime < 12){
+					if(realTime == 0) {realTime = 12;}
+					pageContext.setAttribute("time", "<li>" + realTime + ":00am</li>");
+					if(realTime == 12) {realTime = 0;}
+				}
+				else{
+					if(realTime != 12) {realTime -= 12;}
+					pageContext.setAttribute("time", "<li>" + realTime + ":00pm</li>");
+					if(realTime != 12) {realTime += 12;}
+				}
+				%> <c:out value="${time}" escapeXml="false"/>  <%
+				        
+      
+				
+				for (int mins = 0; mins < 4; mins++){
+					for (int days = 0; days < 7; days++){
+					    if(overlappingSchedule != null) {
+					        if (overlappingSchedule.containsKey(days * 10000 + realTime * 100 + mins * 15)) {							//if event at this time
+								%>
+								<li class="<%= pencilmein.Schedule.howBusy(numSelectedFriends, overlappingSchedule.get(days * 10000 + realTime * 100 + mins * 15)) %>">
+									<%
+									if(DEBUG) {
+									    System.out.println("num friends" + numSelectedFriends.intValue());
+									}
+									pageContext.setAttribute("eventName", overlappingSchedule.get(days * 10000 + realTime * 100 + mins * 15) + " busy");
+									%>
+									<c:out value="${eventName}" escapeXml="false"/>
+								</li>
+							<% }
+							else{
+								%> <li class="free"></li>
+							<% }
+					    }
+						
+						else{
+							%> <li class="free"></li>
+						<% }
+					}
+					%> <li></li> <%
+				}
+				%> <hr> <%
+				realTime = (realTime+1) % 24;
+			}
+        %>
+        
+        </ul>	
 	</body>
 </html>
+
