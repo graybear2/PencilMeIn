@@ -9,6 +9,8 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ScheduleServlet extends HttpServlet {
     
-    static boolean DEBUG = false;
+    static boolean DEBUG = true;
     
     public ScheduleServlet() {
         
@@ -63,84 +65,118 @@ public class ScheduleServlet extends HttpServlet {
             String startString = req.getParameter("start");
             String endString = req.getParameter("end");
             
-            
-            //Convert to 24 hour time
-            int shour, smin, ehour, emin;
-            
-            ArrayList<Day> days = new ArrayList<Day>();
-
-            String[] startParts = startString.split(":");
-            shour = Integer.parseInt(startParts[0]);
-            smin = Integer.parseInt(startParts[1]);
-            
-            String[] endParts = endString.split(":");
-            ehour = Integer.parseInt(endParts[0]);
-            emin = Integer.parseInt(endParts[1]);
-            
-            
-            if (startString.contains("pm") && (shour != 12)) {
-                shour += 12;
-            }
-            else if (startString.contains("am") && shour == 12) {
-                 shour = 0;
-            }
-            
-            if (endString.contains("pm") && (ehour != 12)) {
-                ehour += 12;
-            }
-            else if (endString.contains("am") && ehour == 12) {
-                 ehour = 0;
-            }
-            
-            //Read all selected days
-            if(req.getParameter("sunday") != null) {
-                days.add(Day.SUNDAY);
-            }
-            
-            if(req.getParameter("monday") != null) {
-                days.add(Day.MONDAY);
-            }
-            
-            if(req.getParameter("tuesday") != null) {
-                days.add(Day.TUESDAY);
-            }
-            
-            if(req.getParameter("wednesday") != null) {
-                days.add(Day.WEDNESDAY);
-            }
-            
-            if(req.getParameter("thursday") != null) {
-                days.add(Day.THURSDAY);
-            }
-            
-            if(req.getParameter("friday") != null) {
-                days.add(Day.FRIDAY);
-            }
-            
-            if(req.getParameter("saturday") != null) {
-                days.add(Day.SATURDAY);
-            }
-            
             if(DEBUG) {
                 System.out.println(name);
                 System.out.println(startString);
                 System.out.println(endString);
+            }
+            
+            //Convert to 24 hour time
+            int shour, smin, ehour, emin;
+            
+            //if an event contains an empty field
+            if(name.isEmpty() || startString.isEmpty() || endString.isEmpty()) {
                 
-                for(Day d : days) {
-                    //System.out.println(d.toString());
+                req.setAttribute("errorMessage", "Please complete all fields and try again.");
+                
+                RequestDispatcher dispatcher = req.getRequestDispatcher("/schedinput.jsp");
+               
+                try {
+                    dispatcher.forward(req, resp);
+                } catch (ServletException | IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }           
+            }
+            else {
+                ArrayList<Day> days = new ArrayList<Day>();
+
+                String[] startParts = startString.split(":");
+                shour = Integer.parseInt(startParts[0]);
+                smin = Integer.parseInt(startParts[1]);
+                
+                String[] endParts = endString.split(":");
+                ehour = Integer.parseInt(endParts[0]);
+                emin = Integer.parseInt(endParts[1]);
+                
+                
+                if (startString.contains("pm") && (shour != 12)) {
+                    shour += 12;
+                }
+                else if (startString.contains("am") && shour == 12) {
+                     shour = 0;
+                }
+                
+                if (endString.contains("pm") && (ehour != 12)) {
+                    ehour += 12;
+                }
+                else if (endString.contains("am") && ehour == 12) {
+                     ehour = 0;
+                }
+                
+                //Read all selected days
+                if(req.getParameter("sunday") != null) {
+                    days.add(Day.SUNDAY);
+                }
+                
+                if(req.getParameter("monday") != null) {
+                    days.add(Day.MONDAY);
+                }
+                
+                if(req.getParameter("tuesday") != null) {
+                    days.add(Day.TUESDAY);
+                }
+                
+                if(req.getParameter("wednesday") != null) {
+                    days.add(Day.WEDNESDAY);
+                }
+                
+                if(req.getParameter("thursday") != null) {
+                    days.add(Day.THURSDAY);
+                }
+                
+                if(req.getParameter("friday") != null) {
+                    days.add(Day.FRIDAY);
+                }
+                
+                if(req.getParameter("saturday") != null) {
+                    days.add(Day.SATURDAY);
+                }
+                
+                if(DEBUG) {                    
+                    for(Day d : days) {
+                        System.out.println(d.toString());
+                    }
+                }
+                
+                //if days is empty
+                if(days.isEmpty()) {
+                    req.setAttribute("errorMessage", "Please complete all fields and try again.");
+                    RequestDispatcher dispatcher = req.getRequestDispatcher("/schedinput.jsp");
+                   
+                    try {
+                        dispatcher.forward(req, resp);
+                    } catch (ServletException | IOException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }           
+                }
+                else {
+                    Event e = new Event(name, days, shour, smin, ehour, emin);
+                    Student s = ofy().load().type(Student.class).id(user.getEmail()).now(); 
+                    if(overwriteId == -1)
+                        s.addEvent(e);
+                    else
+                        s.overwriteEvent(e, overwriteId);
+                    
+                    try {
+                        resp.sendRedirect("/schedinput.jsp");
+                    } catch (IOException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
                 }
             }
- 
-            Event e = new Event(name, days, shour, smin, ehour, emin);
-            
-            Student s = ofy().load().type(Student.class).id(user.getEmail()).now(); 
-            
-            if(overwriteId == -1)
-            	s.addEvent(e);
-            else
-            	s.overwriteEvent(e, overwriteId);
-            
-            //System.out.println(s.getSchedule().getEvents().get(0).getName());
         }
         
         //Remove an event
@@ -148,13 +184,13 @@ public class ScheduleServlet extends HttpServlet {
         	System.out.println("remove event");
         	Student s = ofy().load().type(Student.class).id(user.getEmail()).now(); 
         	s.removeEvent(overwriteId);
-        }
-        
-        try {
-            resp.sendRedirect("/schedinput.jsp");
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        	
+            try {
+                resp.sendRedirect("/schedinput.jsp");
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     }
 }
