@@ -4,6 +4,8 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -53,7 +55,7 @@ public class MergeScheduleServlet extends HttpServlet {
             }
         }
         
-        if(req.getParameter("merge") != null) {
+        if(req.getParameter("merge") != null || (req.getParameter("overlapTime") != null && req.getParameter("overlapTime").length() != 0)) {
             int numFriends = Integer.parseInt(req.getParameter("numFriends"));
             int numSelectedFriends = 0;
             
@@ -78,8 +80,24 @@ public class MergeScheduleServlet extends HttpServlet {
             selectedFriends.add(Student.getStudent(user));
             numSelectedFriends++;
             //sends the merged schedule back to the user side jsp
-            req.setAttribute("mergedMap", Schedule.scheduleMerge(selectedFriends));
+            HashMap<Integer, ArrayList<String>> scheduleMergeString = Schedule.scheduleMerge(selectedFriends);
+            HashMap<Integer, Integer> scheduleMergeInteger = new HashMap<Integer, Integer>();
+            for(Integer i: scheduleMergeString.keySet()) {
+            	scheduleMergeInteger.put(i, scheduleMergeString.get(i).size());
+            }
+            HashSet<String> checkNames= new HashSet<String>();
+            for(Student s: selectedFriends) {
+            	checkNames.add(s.getUser().getNickname());
+            }
+            
+            if(req.getParameter("overlapTime") != null && req.getParameter("overlapTime").length() != 0) {
+            	int mergeTime = Integer.parseInt(req.getParameter("overlapTime"));
+                ArrayList<String> overlapUsers = Schedule.scheduleMerge(selectedFriends).get(mergeTime);
+            }
+            
+            req.setAttribute("mergedMap", scheduleMergeInteger);
             req.setAttribute("numSelectedFriends", new Integer(numSelectedFriends));
+            req.setAttribute("checkNames", checkNames);
             RequestDispatcher dispatcher = req.getRequestDispatcher("/home.jsp");
             
             try {
@@ -92,6 +110,7 @@ public class MergeScheduleServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
+
         
         else {
             try {
