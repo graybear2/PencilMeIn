@@ -108,7 +108,7 @@ body {
   border-right: 1px solid #ffaa9f;
   width: 2px;
   float: left;
-  height: 510px;
+  height: 2380px;
   margin-left: 80px;
 }
 
@@ -170,13 +170,6 @@ body {
 }
 
 
-
-.homefree {
-	margin-bottom: -4px;
-	background-color: darkblue;
-	border: 1px solid darkblue;
-}
-
 .blank {
 	margin: -1px;
 }
@@ -185,35 +178,41 @@ body {
 	margin: -1px;
 }
 
+.homefree {
+	margin-bottom: -1px;
+	background-color: white;
+	border: 1px solid white;
+}
+
 .freequarterbusy {
-	background-color: RoyalBlue;
-	border: 1px solid RoyalBlue;
+	background-color: lightBlue;
+	border: 1px solid lightBlue;
 	margin: -1px;
 }
 
 .quarterhalfbusy {
-	margin-bottom: -4px;
-	background-color: DodgerBlue;
-	border: 1px solid DodgerBlue;
+	margin-bottom: -1px;
+	background-color: DeepskyBlue;
+	border: 1px solid DeepskyBlue;
 }
 
 .halfthreequarterbusy {
-	background-color: DeepSkyBlue;
-	border: 1px solid DeepSkyBlue;
+	background-color: DodgerBlue;
+	border: 1px solid dodgerBlue;
 	margin: -1px;
 }
 
 .threequarterallbusy {
-	background-color: lightblue;
-	border: 1px solid lightblue;
+	background-color: royalblue;
+	border: 1px solid royalblue;
 	margin: -1px;
 }
 
 .allbusy {
 	
-	margin-bottom: -4px;
-	background-color: white;
-	border: 1px solid white;
+	margin-bottom: -1px;
+	background-color: darkblue;
+	border: 1px solid darkblue;
 }
 
 hr {
@@ -382,6 +381,15 @@ a:hover{
 	z-index: 1;
 	width: 76.5%;
 	height: 72%;
+}
+
+.scheduleforediting {
+	position: absolute;
+	right: 0.5%;
+	top: 59%;
+	z-index: 1;
+	width: 91.5%;
+
 }
 
 
