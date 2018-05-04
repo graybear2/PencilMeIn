@@ -41,10 +41,9 @@
 		student = Student.createStudent();
 		student.save();
 		System.out.println("put student in the data store");
-	
-		//TODO: what should we do with new users? redirect to schedule input?
+		
+		response.sendRedirect("/schedinput.jsp");
 	}
-	
 	
 	%>
 		
@@ -168,7 +167,7 @@
 								</li>
 							<% }
 							else{
-								%> <li class="homefree"> &nbsp </li>
+								%> <li class="homefree"> &nbsp; </li>
 							<% }
 					    }
 						
