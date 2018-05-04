@@ -211,10 +211,47 @@
 			<li> </li>
 			<li class="subtitle">My Schedule:</li>
 			<li> </li>	
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>	
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
+			<li> </li>
 		</ul>
 		
 		<!-- LIST SCHEDULE EVENTS HERE -->
-			<ul class="weekdays">
+		<div class="scheduleforediting">
+		<ul class="weekdays">
 			<li>  </li>
 			<li>Mo</li>
 			<li>Tu</li>
@@ -276,6 +313,7 @@
         %>
         
         </ul>
+        </div>
 
 	</body>
 
