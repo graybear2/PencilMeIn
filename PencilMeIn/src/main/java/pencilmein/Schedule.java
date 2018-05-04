@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.SortedSet;
 
+import com.google.appengine.api.users.User;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Serialize;
 
@@ -54,28 +55,29 @@ public class Schedule {
         return schedule;
     }
 
-    public static HashMap<Integer, Integer> scheduleMerge(ArrayList<Student> students) {
-        HashMap<Integer, Integer> result = new HashMap<Integer, Integer>();
+    public static HashMap<Integer, ArrayList<String>> scheduleMerge(ArrayList<Student> students) {
+        HashMap<Integer, ArrayList<String>> result = new HashMap<Integer, ArrayList<String>>();
         for (Student s : students) {
             for (Event e : s.getSchedule().getEvents()) {
                 System.out.println("Event with time starting here " + e.getTimes().first());
-                add(e, result);
+                add(e, result, s.getUser().getNickname());
             }
         }
         return result;
     }
     
-    private static void add(Event e, HashMap<Integer, Integer> result) {
+    private static void add(Event e, HashMap<Integer, ArrayList<String>> result, String student) {
         for (Integer t : e.times) {
             if (result.containsKey(t)) {
-                int temp = result.get(t);
-                System.out.println("Has time " + t + " with " + temp + " people");
-                temp++;
+                ArrayList<String> temp = result.get(t);
+                temp.add(student);
                 result.put(t, temp);
             }
             else {
                 System.out.println("Doesn't have time " + t);
-                result.put(t, 1);
+                ArrayList<String> temp = new ArrayList<String>();
+                temp.add(student);
+                result.put(t, temp);
             }
         }
     }
@@ -109,21 +111,21 @@ public class Schedule {
         return "free";
     } 
    
-    /*
+  /*
     public static void main (String[] args) {
-        Student one = new Student();
+        Student one = new Student("Grace");
         ArrayList<Day> sched1 = new ArrayList<Day>();
         sched1.add(Day.MONDAY);
         sched1.add(Day.WEDNESDAY);
         one.schedule.addEvent(new Event("Random1", sched1, 14, 0, 17, 30));
         
-        Student two = new Student();
+        Student two = new Student("Grayson");
         ArrayList<Day> sched2 = new ArrayList<Day>();
         sched2.add(Day.MONDAY);
         sched2.add(Day.WEDNESDAY);
         two.schedule.addEvent(new Event("Random2", sched2, 13, 0, 18, 00));
         
-        Student three = new Student();
+        Student three = new Student("Kevin");
         ArrayList<Day> sched3 = new ArrayList<Day>();
         sched3.add(Day.MONDAY);
         sched3.add(Day.THURSDAY);
@@ -134,15 +136,16 @@ public class Schedule {
         students.add(one);
         students.add(two);
         students.add(three);
-        HashMap<Integer, Integer> merged = scheduleMerge(students);
+        HashMap<Integer, ArrayList<String>> merged = scheduleMerge(students);
         
         System.out.println("Merging");
         System.out.println("Num entries " + merged.size());
-        for (Map.Entry<Integer, Integer> entry : merged.entrySet()) {
+        for (Map.Entry<Integer, ArrayList<String>> entry : merged.entrySet()) {
             Integer key = entry.getKey();
-            Integer value = entry.getValue();
+            ArrayList<String> value = entry.getValue();
             System.out.println(value + " poeple unavailable at " + key + " time");
         }
     }
     */
+   
 }

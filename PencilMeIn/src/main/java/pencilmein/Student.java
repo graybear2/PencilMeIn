@@ -28,8 +28,11 @@ public class Student {
     @Serialize ArrayList<User> friends;
     @Serialize ArrayList<User> requests;
     
-    public Student() {
+    String name;
+    
+    public Student(String name) {
         schedule = new Schedule();
+        this.name = name;
     }
     
     public Student(User u) {
