@@ -1,10 +1,8 @@
 package pencilmein;
 
 import com.google.appengine.api.users.User;
-import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.googlecode.objectify.ObjectifyService;
-import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import java.io.IOException;
 
@@ -14,7 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class FriendServlet extends HttpServlet {
-	HttpServletRequest req;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    HttpServletRequest req;
 	HttpServletResponse resp;
 	
     public FriendServlet() {
