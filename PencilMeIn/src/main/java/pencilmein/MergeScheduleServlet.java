@@ -55,7 +55,7 @@ public class MergeScheduleServlet extends HttpServlet {
             }
         }
         
-        if(req.getParameter("merge") != null || (req.getParameter("overlapTime") != null && req.getParameter("overlapTime").length() != 0)) {
+        if(req.getParameter("merge") != null) {
             int numFriends = Integer.parseInt(req.getParameter("numFriends"));
             int numSelectedFriends = 0;
             
@@ -88,11 +88,6 @@ public class MergeScheduleServlet extends HttpServlet {
             HashSet<String> checkNames= new HashSet<String>();
             for(Student s: selectedFriends) {
             	checkNames.add(s.getUser().getNickname());
-            }
-            
-            if(req.getParameter("overlapTime") != null && req.getParameter("overlapTime").length() != 0) {
-            	int mergeTime = Integer.parseInt(req.getParameter("overlapTime"));
-                ArrayList<String> overlapUsers = Schedule.scheduleMerge(selectedFriends).get(mergeTime);
             }
             
             req.setAttribute("mergedMap", scheduleMergeInteger);

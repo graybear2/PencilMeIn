@@ -1,5 +1,6 @@
 <%@ page import="pencilmein.Student" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.HashSet" %>
 <%@ page import="com.google.appengine.api.users.User" %>
 <%@ page import="com.google.appengine.api.users.UserService"%>
 <%@ page import="com.google.appengine.api.users.UserServiceFactory"%>
@@ -63,6 +64,7 @@
 		    
 				<form action="/mergesched" method="post" class="form">
 					<%
+					HashSet<String> checkNames = (HashSet<String>) request.getAttribute("checkNames");
 					ArrayList<User> friends = student.getFriends();
 		    		int numFriends = 0;
 					for (User friend : friends){  
@@ -70,7 +72,11 @@
 						%>
 	    				<li class="friendslist">
 	    					<label class="container"> <c:out value="${name}" escapeXml="false" />
-  							<input type="checkbox" name="<%=numFriends%>" value="<%=friend.getEmail()%>"/>
+	    					<%if(checkNames != null && checkNames.contains(friend.getEmail())){ %>
+  								<input type="checkbox" name="<%=numFriends%>" value="<%=friend.getEmail()%>" checked/>
+  							<%}else {%>
+  								<input type="checkbox" name="<%=numFriends%>" value="<%=friend.getEmail()%>"/>
+  							<%} %>
   							<span class="checkmark"></span>
 						</label>
 	    				</li>

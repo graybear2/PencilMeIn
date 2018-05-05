@@ -30,6 +30,10 @@ public class Student {
     
     String name;
     
+    public Student() {
+    	schedule = new Schedule();
+    }
+    
     public Student(String name) {
         schedule = new Schedule();
         this.name = name;
