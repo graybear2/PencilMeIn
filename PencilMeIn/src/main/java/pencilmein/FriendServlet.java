@@ -1,10 +1,8 @@
 package pencilmein;
 
 import com.google.appengine.api.users.User;
-import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.googlecode.objectify.ObjectifyService;
-import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import java.io.IOException;
 
@@ -14,7 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class FriendServlet extends HttpServlet {
-	HttpServletRequest req;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    HttpServletRequest req;
 	HttpServletResponse resp;
 	
     public FriendServlet() {
@@ -49,7 +51,9 @@ public class FriendServlet extends HttpServlet {
     		acceptRequest(Student.getStudent(user), Student.getStudent(req.getParameter("accept")));
     	else if(req.getParameter("decline") != null)
     		declineRequest(Student.getStudent(user), Student.getStudent(req.getParameter("decline")));
-        
+    	else if(req.getParameter("remove") != null) {
+    	    removeFriend(Student.getStudent(user), Student.getStudent(req.getParameter("remove")));
+    	}        
         try {
 			req.getRequestDispatcher("/friends.jsp").forward(req, resp);
 		} catch (ServletException e) {
@@ -97,5 +101,12 @@ public class FriendServlet extends HttpServlet {
     public void declineRequest(Student dec, Student ask) {
     	dec.removeRequest(ask.getUser());
     	dec.save();
+    }
+    
+    public void removeFriend(Student enemy1, Student enemy2) {
+        enemy1.friends.remove(enemy2.getUser());
+        enemy2.friends.remove(enemy1.getUser());
+        enemy1.save();
+        enemy2.save();
     }
 }

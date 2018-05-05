@@ -23,10 +23,8 @@
 		}
 		%>
 	
-		<div class="linesshort"></div>
+		<div class="lines"></div>
 		<p class="title"><a class="titlelink" href="/home.jsp">PencilMeIn</a></p>
-		
-		
 		
 		<ul class="list">
 			<li> 
@@ -72,11 +70,13 @@
 		    		<% 
 				for (User friend : friends){   
 				pageContext.setAttribute("name", friend.getNickname());
+				pageContext.setAttribute("email", friend.getEmail());
 				%>
-		    		<li> <c:out value="${name}" escapeXml="false" /> </li>
+		    		<li> <c:out value="${name}" escapeXml="false" /> <button type="submit" form="form1" value="${email}" name="remove">X</button> </li>
 		    		<%
 				}
 				%>
+				
 		    <li> </li>
 		    <li> </li>
 		    <li> </li>
@@ -84,10 +84,6 @@
 		    <li> </li>
 		    <li> </li>
 		</ul>
-		
-	
-	
-			
-	
+		<form action="/addfriend" method="post" id="form1"></form>	
 	</body>
 </html>

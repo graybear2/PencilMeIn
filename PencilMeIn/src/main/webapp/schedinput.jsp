@@ -19,7 +19,7 @@
 	
 	HashMap<Integer, Event> combinedEvents = new HashMap<Integer, Event>();
 	HashMap<Event, ArrayList<Boolean>> displayedEvents = new HashMap<Event, ArrayList<Boolean>>();
-	
+		
 	for(Event e: events) {
 	    //System.out.println(e);
 	    for(Integer i : e.getTimes()) {
@@ -208,7 +208,13 @@
 					</form></div>
 				<%} %>
 			</li>
-			<li> </li>
+			<li>
+			<%
+			if(request.getAttribute("errorMessage") != null) {
+			    %><div style="color:red;"><%=request.getAttribute("errorMessage")%></div><%
+			}
+			%>
+			</li>
 			<li class="subtitle">My Schedule:</li>
 			<li> </li>	
 			<li> </li>

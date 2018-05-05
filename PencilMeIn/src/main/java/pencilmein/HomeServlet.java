@@ -18,11 +18,21 @@ public class HomeServlet extends HttpServlet {
         ObjectifyService.register(Student.class);
     }
     
-    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException{
-    		resp.sendRedirect("/home.jsp");
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) {
+        try {
+            resp.sendRedirect("/home.jsp");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
     
     public void doPost(HttpServletRequest req, HttpServletResponse resp) {
-        
+        try {
+            resp.sendRedirect("/home.jsp");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }

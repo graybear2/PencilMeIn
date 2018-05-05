@@ -12,14 +12,11 @@
 <%@ page import="java.util.GregorianCalendar"%>
 <%@ page import="java.util.HashMap"%>
 
-
-
 <html>
 	<head>
 		<title>Pencil Me In</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<link href="https://fonts.googleapis.com/css?family=Homemade+Apple|Raleway" rel="stylesheet">
-		
 	</head>
 	
 	<body>
@@ -42,10 +39,9 @@
 		student = Student.createStudent();
 		student.save();
 		System.out.println("put student in the data store");
-	
-		//TODO: what should we do with new users? redirect to schedule input?
+		
+		response.sendRedirect("/schedinput.jsp");
 	}
-	
 	
 	%>
 		
@@ -174,7 +170,7 @@
 								</li>
 							<% }
 							else{
-								%> <li class="homefree"> &nbsp </li>
+								%> <li class="homefree"> &nbsp; </li>
 							<% }
 					    }
 						
