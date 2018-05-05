@@ -11,14 +11,11 @@
 <%@ page import="java.util.GregorianCalendar"%>
 <%@ page import="java.util.HashMap"%>
 
-
-
 <html>
 	<head>
 		<title>Pencil Me In</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<link href="https://fonts.googleapis.com/css?family=Homemade+Apple|Raleway" rel="stylesheet">
-		
 	</head>
 	
 	<body>

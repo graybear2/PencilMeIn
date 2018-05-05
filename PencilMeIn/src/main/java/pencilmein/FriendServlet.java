@@ -49,7 +49,9 @@ public class FriendServlet extends HttpServlet {
     		acceptRequest(Student.getStudent(user), Student.getStudent(req.getParameter("accept")));
     	else if(req.getParameter("decline") != null)
     		declineRequest(Student.getStudent(user), Student.getStudent(req.getParameter("decline")));
-        
+    	else if(req.getParameter("remove") != null) {
+    	    removeFriend(Student.getStudent(user), Student.getStudent(req.getParameter("remove")));
+    	}        
         try {
 			req.getRequestDispatcher("/friends.jsp").forward(req, resp);
 		} catch (ServletException e) {
@@ -97,5 +99,12 @@ public class FriendServlet extends HttpServlet {
     public void declineRequest(Student dec, Student ask) {
     	dec.removeRequest(ask.getUser());
     	dec.save();
+    }
+    
+    public void removeFriend(Student enemy1, Student enemy2) {
+        enemy1.friends.remove(enemy2.getUser());
+        enemy2.friends.remove(enemy1.getUser());
+        enemy1.save();
+        enemy2.save();
     }
 }
